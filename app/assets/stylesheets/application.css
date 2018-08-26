@@ -13,24 +13,46 @@
  *= require_tree .
  *= require_self
  */
+ @import "variables";
 
 nav {
   display: flex;
   align-items: center;
+  border-bottom: 1px solid #F0F0F0;
+  background-color: white;
+  height: 60px;
 }
-.logo {
+
+body {
+  background-color: #fafafa
+}
+
+.logo-container {
   display: flex;
   align-items: center;
+  margin-left: 20px;
+}
+
+.logo-link {
+  text-decoration: none;
 }
 
 .logo-text {
   font-size: 30px;
-  font-family: 'Satisfy', sans-serif;
-  text-decoration: none;
+  font-family: 'billabongregular';
   color: black;
+  margin-left: 130px;
+}
+
+nav > ul > li {
+  display: inline-block;
 }
 
 .camera-logo {
-  margin-top: 15px;
+  position: absolute;
   height: 34px;
+  margin-left: 60px;
+  padding-right: 15px;
+  top: 10px;
+  border-right: 1px solid black;
 }

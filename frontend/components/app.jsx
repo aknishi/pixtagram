@@ -5,10 +5,12 @@ const App = () => (
   <div>
     <header>
       <nav>
-        <div className= "logo">
-          <Link to="/" className="logo-text">
-            <img src="../assets/camera-logo.png" className="camera-logo"/>
-            <span>Pixtagram</span>
+        <div className= "logo-container">
+          <Link to="/" className="logo-link">
+            <ul>
+              <li><img src={window.cameraURL} className="camera-logo" alt="camera-logo"/></li>
+              <li><h2 className="logo-text">Pixtagram</h2></li>
+            </ul>
           </Link>
         </div>
       </nav>
