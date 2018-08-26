@@ -14,7 +14,23 @@
  *= require_self
  */
 
-.main-title {
-  font-size: 40px;
+nav {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  font-size: 30px;
   font-family: 'Satisfy', sans-serif;
+  text-decoration: none;
+  color: black;
+}
+
+.camera-logo {
+  margin-top: 15px;
+  height: 34px;
 }
