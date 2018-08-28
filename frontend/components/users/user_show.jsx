@@ -24,7 +24,6 @@ class UserShow extends React.Component {
 
   render() {
     const { user } = this.props
-    console.log(this.props);
     return(
       <div className="user-profile-container">
         <div className="user-info-container">

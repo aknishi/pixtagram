@@ -6,6 +6,7 @@ import SignupFormContainer from './session_form/signup_form_container';
 import NavBarIconsContainer from './navbar_icons/navbar_icons_container';
 import MainContainer from './main_container';
 import UserShowContainer from './users/user_show_container';
+import UserEditFormContainer from './users/user_edit_form_container';
 import PostsContainer from './posts/posts_container';
 
 const App = () => (
@@ -29,6 +30,7 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <Route exact path="/" component={MainContainer} />
       <ProtectedRoute exact path="/users/:userId" component={UserShowContainer} />
+      <ProtectedRoute exact path="/users/:userId/edit" component={UserEditFormContainer} />
       <ProtectedRoute exact path="/posts/" component={PostsContainer} />
   </div>
 );

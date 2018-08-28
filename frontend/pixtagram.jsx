@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
-import { fetchUsers } from './actions/user_actions';
+import { fetchUsers, updateUser } from './actions/user_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
