@@ -1,10 +1,6 @@
 import React from 'React';
 import { Link, withRouter } from 'react-router-dom';
 
-// function standby () {
-//   document.getElementById("profile-pic").src ="window.defaultProfilePicURL"
-// }
-
 class UserShow extends React.Component {
   constructor(props) {
     super(props)
@@ -14,7 +10,7 @@ class UserShow extends React.Component {
   }
 
   handleEdit() {
-
+    this.props.history.push(`/users/${this.props.userId}/edit`);
   }
 
   handleLogout() {
