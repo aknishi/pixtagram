@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 class UserShow extends React.Component {
