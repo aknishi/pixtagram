@@ -48,10 +48,10 @@ p1 = Post.create!(
   user_id: user1.id
 )
 
-# p1.photo.attach(io: File.open(
-#   "/Users/adriankawanishi/Documents/AppAcademy/pixtagram_photos/mission_beach.jpg"),
-#   filename: "mission_beach.jpg"
-# )
+p1.photo.attach(io: File.open(
+  "/Users/adrian/Documents/AppAcademy/pixtagram_photos/mission_beach.jpg"),
+  filename: "mission_beach.jpg"
+)
 
 p2 = Post.create!(
   body: "",
@@ -59,10 +59,10 @@ p2 = Post.create!(
   user_id: user2.id
 )
 
-# p2.photo.attach(io: File.open(
-#   "/Users/adriankawanishi/Documents/AppAcademy/pixtagram_photos/gorge_amphitheatre.png"),
-#   filename: "gorge_amphitheatre.jpg"
-# )
+p2.photo.attach(io: File.open(
+  "/Users/adrian/Documents/AppAcademy/pixtagram_photos/gorge_amphitheatre.png"),
+  filename: "gorge_amphitheatre.jpg"
+)
 
 p3 = Post.create!(
   body: "Exploring the glaciers",
@@ -70,7 +70,7 @@ p3 = Post.create!(
   user_id: user3.id
 )
 
-# p3.photo.attach(io: File.open(
-#   "/Users/adriankawanishi/Documents/AppAcademy/pixtagram_photos/glacier.png"),
-#   filename: "glacier.jpg"
-# )
+p3.photo.attach(io: File.open(
+  "/Users/adrian/Documents/AppAcademy/pixtagram_photos/glacier.png"),
+  filename: "glacier.jpg"
+)

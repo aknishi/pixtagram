@@ -1,4 +1,4 @@
 json.array! @posts do |post|
-  json.extract! post, :id, :body, :location, :user_id
+  json.partial! "api/posts/post", post: post
   json.photoUrl url_for(post.photo)
 end
