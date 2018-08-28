@@ -1,7 +1,8 @@
 class Api::PostsController < ApplicationController
+  before_action :require_login
+
   def index
     @posts = Post.all
-    render :index
   end
 
   def show

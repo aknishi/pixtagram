@@ -19,6 +19,8 @@ class User < ApplicationRecord
   has_many :posts,
     foreign_key: :user_id
 
+  has_one_attached :profile_photo
+
   attr_reader :password
 
   after_initialize :ensure_session_token

@@ -10,12 +10,19 @@ class LoginForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleGuestLogin = this.handleGuestLogin.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state)
     this.props.login(user);
+  }
+
+  handleGuestLogin(e) {
+    e.preventDefault();
+    const guest = {username:"guest", password: "123456"};
+    this.props.login(guest)
   }
 
   errors() {
@@ -59,6 +66,14 @@ class LoginForm extends React.Component {
         </form>
         <div className="reroute-session">
           <h3>Don't have an account?  {this.props.navLink}</h3>
+        </div>
+        <div className="reroute-session">
+          <button
+            type="submit"
+            onClick={this.handleGuestLogin}
+            className="demo-login-button">
+            Demo Login
+          </button>
         </div>
       </div>
     )
