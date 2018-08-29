@@ -57,7 +57,7 @@ class PostForm extends React.Component {
     if (this.state.photoUrl) {
       return(
         <div>
-          <h3> Image Preview </h3>
+          <h3 className="preview-text"> Image Preview </h3>
           <img src={this.state.photoUrl} className="img-preview"/>
         </div>
     )}
@@ -71,35 +71,28 @@ class PostForm extends React.Component {
           <ul>
             {this.errors()}
           </ul>
-          <h3 className="form-title">Create a post</h3>
+          <h3 className="post-form-title">Create a post</h3>
           <div className="post-form">
-            <div >
-              <input
-                type="file"
-                className="file-input"
-                onChange={this.handleFile}
-                />
-            </div>
+            <input
+              type="file"
+              className="file-input"
+              onChange={this.handleFile}
+              />
             { this.preview() }
-            <div >
-              <textarea
-                cols="30"
-                rows="10"
-                type="text"
-                className="body-box"
-                value={this.state.body}
-                placeholder="Write a caption..."
-                onChange={this.update('body')}
-                />
-            </div>
-            <div >
-              <input
-                type="text"
-                value={this.state.location}
-                placeholder="Location"
-                onChange={this.update('location')}
-                />
-            </div>
+            <textarea
+              type="text"
+              className="body-box"
+              value={this.state.body}
+              placeholder="Write a caption..."
+              onChange={this.update('body')}
+              />
+            <input
+              type="text"
+              value={this.state.location}
+              placeholder="Location"
+              className="location-input"
+              onChange={this.update('location')}
+              />
             <input type="submit" value="Create Post" className="button"/>
           </div>
         </form>

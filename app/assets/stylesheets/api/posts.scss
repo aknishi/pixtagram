@@ -113,8 +113,44 @@
   margin-bottom: 6px;
 }
 
+// Post Form
+.post-form-box {
+  width: 350px;
+}
+.post-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  width: 350px;
+}
+
+.post-form-title {
+  font-size: 40px;
+  font-family: 'billabongregular';
+  margin: 10px;
+  text-align: center;
+}
+
+.file-input {
+  background-color: white;
+}
+
 .img-preview {
-  width: 300px;
+  width: 100%;
+}
+
+.preview-text {
+  padding: 10px;
+  font-weight: 400;
+}
+
+.body-box {
+  height: 100px;
+}
+
+.location-input {
+  background-color: white;
 }
 
 #bold {
