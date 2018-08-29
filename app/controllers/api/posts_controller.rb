@@ -2,6 +2,7 @@ class Api::PostsController < ApplicationController
   before_action :require_login
 
   def index
+    sleep 2
     @posts = Post.all
   end
 
