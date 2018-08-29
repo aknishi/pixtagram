@@ -38,7 +38,7 @@ class PostForm extends React.Component {
     formData.append('post[location]', this.state.location);
     formData.append('post[photo]', this.state.photoFile);
     formData.append('post[user_id]', currentUserId);
-    createPost(formData).then(this.props.history.push(`/users/${currentUserId}`));
+    createPost(formData).then(this.props.history.push("/posts/"));
   }
 
   errors() {
