@@ -107,7 +107,7 @@
   display: flex;
   margin-bottom: 16px;
   align-items: center;
-  
+
   aside {
     width: 194px;
     padding-left: 32px;
@@ -130,6 +130,7 @@
   height: 38px;
   background-color: white;
   border-radius: 19px;
+  border: 1px solid $light-grey;
 }
 #small-profile-pic {
   width: 100%;

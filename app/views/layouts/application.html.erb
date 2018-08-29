@@ -4,6 +4,7 @@
     <title>Pixtagram</title>
     <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Abel|Questrial" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -13,6 +14,9 @@
       window.heartURL = "<%= image_url('heart-icon.png') %>"
       window.profileURL = "<%= image_url('profile-icon.png') %>"
       window.locationURL = "<%= image_url('location-icon.png') %>"
+      window.commentURL = "<%= image_url('comment-icon.png') %>"
+      window.bookmarkURL = "<%= image_url('bookmark-icon.png') %>"
+      window.uploadURL = "<%= image_url('upload-icon.png') %>"
       window.defaultProfilePicURL = "<%= image_url('default_profile_pic.png') %>"
     </script>
   </head>

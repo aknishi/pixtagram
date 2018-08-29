@@ -7,7 +7,7 @@ import NavBarIconsContainer from './navbar_icons/navbar_icons_container';
 import MainContainer from './main_container';
 import UserShowContainer from './users/user_show_container';
 import UserEditFormContainer from './users/user_edit_form_container';
-import PostsContainer from './posts/posts_container';
+import PostsIndexContainer from './posts/posts_index_container';
 
 const App = () => (
   <div>
@@ -31,7 +31,7 @@ const App = () => (
       <Route exact path="/" component={MainContainer} />
       <ProtectedRoute exact path="/users/:userId" component={UserShowContainer} />
       <ProtectedRoute exact path="/users/:userId/edit" component={UserEditFormContainer} />
-      <ProtectedRoute exact path="/posts/" component={PostsContainer} />
+      <ProtectedRoute exact path="/posts/" component={PostsIndexContainer} />
   </div>
 );
 

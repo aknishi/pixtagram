@@ -86,7 +86,7 @@ class UserEditForm extends React.Component {
               <aside>
                 <img className="small-profile-pic" src={window.defaultProfilePicURL}/>
               </aside>
-              <h3>{user.username}</h3>
+              <h2 id="bold">{user.username}</h2>
             </div>
             <div className="edit-row">
               <aside>
