@@ -10,6 +10,7 @@ class PostsIndex extends React.Component {
 
   render() {
     const { posts, users } = this.props
+    console.log(this.props);
     const postItems = posts.map(post => <PostsIndexItem key={post.id} post={post} user={users[post.user_id]} />)
     return(
       <div>
