@@ -22,7 +22,7 @@ class PostsIndexItem extends React.Component {
 
   handleDelete() {
     const { post, deletePost } = this.props;
-    deletePost(post.id);
+    if (window.confirm('Are you sure you wish to delete this post?')) deletePost(post.id);
   }
 
   handleBookmark() {
