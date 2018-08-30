@@ -1,22 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class PostsIndexItem extends React.Component {
   constructor(props){
     super(props)
 
+    this.navigateToUser = this.navigateToUser.bind(this);
     this.handleLike = this.handleLike.bind(this);
+    this.handleBookmark = this.handleBookmark.bind(this);
+  }
+
+  navigateToUser() {
+    const { user } = this.props
+    this.props.history.push(`/users/${user.id}`)
   }
 
   handleLike() {
     console.log("liked!");
   }
 
+  handleBookmark() {
+    console.log("Bookmarked!");
+  }
+
   render() {
     const { post, user } = this.props
     return(
       <div className="post-index-container">
-        <div className="post-header">
+        <div className="post-header" onClick={this.navigateToUser}>
           <img className="small-profile-pic" src={window.defaultProfilePicURL}/>
           <div className="post-header-title">
             <h2 className="post-username" id="bold">{user.username}</h2>
@@ -32,7 +43,7 @@ class PostsIndexItem extends React.Component {
               <img src={window.heartURL} className="icon" alt="heart" onClick={this.handleLike}/>
               <img src={window.commentURL} className="icon" alt="comment"/>
             </div>
-            <img src={window.bookmarkURL} className="icon" alt="bookmark"/>
+            <img src={window.bookmarkURL} className="icon" alt="bookmark" onClick={this.handleBookmark}/>
           </div>
           <h3 id="bold" className="total-likes">## Likes</h3>
           <div className="post-comments">
@@ -63,4 +74,4 @@ class PostsIndexItem extends React.Component {
   }
 }
 
-export default PostsIndexItem;
+export default withRouter(PostsIndexItem);
