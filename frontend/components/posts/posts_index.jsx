@@ -9,8 +9,16 @@ class PostsIndex extends React.Component {
   }
 
   render() {
-    const { posts, users } = this.props;
-    const postItems = posts.slice(0).reverse().map(post => <PostsIndexItem key={post.id} post={post} user={users[post.user_id]} />)
+    const { posts, users, deletePost, currentUserId } = this.props;
+    const postItems = posts.slice(0).reverse().map(post => (
+      <PostsIndexItem
+        key={post.id}
+        post={post}
+        user={users[post.user_id]}
+        deletePost={deletePost}
+        currentUserId={currentUserId}
+        />
+    ))
     return(
       <div>
         { postItems }

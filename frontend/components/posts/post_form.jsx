@@ -30,6 +30,10 @@ class PostForm extends React.Component {
     }
   }
 
+  redirectToPostIndex(){
+    this.props.history.push("/posts/")
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const { currentUserId, createPost } = this.props
@@ -38,7 +42,7 @@ class PostForm extends React.Component {
     formData.append('post[location]', this.state.location);
     formData.append('post[photo]', this.state.photoFile);
     formData.append('post[user_id]', currentUserId);
-    createPost(formData).then(this.props.history.push("/posts/"));
+    createPost(formData).then(setTimeout(() => {this.redirectToPostIndex()}, 2000));
   }
 
   errors() {

@@ -8,6 +8,7 @@ class PostsIndexItem extends React.Component {
     this.navigateToUser = this.navigateToUser.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.handleBookmark = this.handleBookmark.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   navigateToUser() {
@@ -19,20 +20,41 @@ class PostsIndexItem extends React.Component {
     console.log("liked!");
   }
 
+  handleDelete() {
+    const { post, deletePost } = this.props;
+    deletePost(post.id);
+  }
+
   handleBookmark() {
     console.log("Bookmarked!");
+  }
+
+  deleteButton() {
+    const { currentUserId, post } = this.props
+    if (currentUserId === post.user_id) {
+      return(
+          <img src={window.deleteIconURL}
+            className="icon" alt="delete"
+            onClick={this.handleDelete.bind(this)}/>
+      )
+    } else {
+      return (<div></div>)
+    }
   }
 
   render() {
     const { post, user } = this.props
     return(
       <div className="post-index-container">
-        <div className="post-header" onClick={this.navigateToUser}>
-          <img className="small-profile-pic" src={window.defaultProfilePicURL}/>
-          <div className="post-header-title">
-            <h2 className="post-username" id="bold">{user.username}</h2>
-            <h4 className="post-location">{post.location}</h4>
+        <div className="post-header">
+          <div className="post-author"onClick={this.navigateToUser}>
+            <img className="small-profile-pic" src={window.defaultProfilePicURL}/>
+            <div className="post-header-title">
+              <h2 className="post-username" id="bold">{user.username}</h2>
+              <h4 className="post-location">{post.location}</h4>
+            </div>
           </div>
+          { this.deleteButton() }
         </div>
         <div className="post-photo-container">
           <img className="post-full-photo" src={post.photoUrl}/>

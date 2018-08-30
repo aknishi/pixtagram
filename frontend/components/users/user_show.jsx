@@ -11,7 +11,7 @@ class UserShow extends React.Component {
   }
 
   handleEdit() {
-    this.props.history.push(`/users/${this.props.userId}/edit`);
+    this.props.history.push(`/users/accounts/${this.props.userId}/edit`);
   }
 
   handleLogout() {

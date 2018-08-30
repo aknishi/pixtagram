@@ -50,6 +50,12 @@
   padding: 16px;
   align-items: center;
   cursor: pointer;
+  justify-content: space-between;
+}
+
+.post-author {
+  display: flex;
+  align-items: center;
 }
 
 .post-header-title {
