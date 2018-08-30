@@ -6,7 +6,8 @@
 .posts-navbar {
   width: 100%;
   height: 50px;
-  display: block;
+  display: flex;
+  justify-content: center;
   border-top: 1px solid $light-grey;
   border-bottom: 1px solid $light-grey;
   font-weight: bold;
@@ -14,12 +15,10 @@
 
   ul {
     display: flex;
-    justify-content: space-around;
-
   }
 
   ul > li {
-    margin-top: 15px;
+    margin: 15px 40px 15px 40px;
   }
 }
 
@@ -28,6 +27,10 @@
   color: $grey;
   font-family: 'Questrial', sans-serif;
   font-size: 14px;
+
+  &:focus {
+    text-decoration: underline;
+  }
 }
 
 .post-index-container {
@@ -169,11 +172,53 @@
   width: 293px;
   height: 293px;
   margin-bottom: 28px;
+  position: relative;
 }
 
 .photo-grid-item {
   width: 100%;
   height: 100%;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  position: absolute;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.photo-layer {
+  position: absolute;
+  width: 293px;
+  height: 293px;
+  top: 50%;
+  left: 50%;
+  background-color: black;
+  transition: .5s ease;
+  opacity: 0;
+  display: flex;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  color: white;
+
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.layer-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.counts {
+  margin: 10px;
+  display: flex;
+  align-items: center;
 }
 
 #bold {
