@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import PostGrid from '../posts/post_grid';
 
 class UserShow extends React.Component {
   constructor(props) {
@@ -18,8 +19,9 @@ class UserShow extends React.Component {
     this.props.history.push(`/login`);
   }
 
-  componentWillMount() {
-    this.props.fetchUser(this.props.userId)
+  componentDidMount() {
+    this.props.fetchUser(this.props.match.params.userId)
+    this.props.fetchPosts()
   }
 
   currentUserButtons() {
@@ -41,7 +43,7 @@ class UserShow extends React.Component {
   }
 
   render() {
-    const { user } = this.props
+    const { user, userPosts } = this.props
     return(
       <div className="user-profile-container">
         <div className="user-info-container">
@@ -55,7 +57,12 @@ class UserShow extends React.Component {
               <h2>{user.username}</h2>
               { this.currentUserButtons()}
             </div>
-            <h2>{user.name}</h2>
+            <div className="user-stats">
+              <h3><b>{userPosts.length}</b> posts</h3>
+              <h3><b>XX</b> followers</h3>
+              <h3><b>XX</b> following</h3>
+            </div>
+            <div><h2>{user.name}</h2></div>
           </div>
         </div>
         <div className="user-posts-container">
@@ -64,6 +71,9 @@ class UserShow extends React.Component {
               <li><Link to={`/users/${this.props.userId}`} className="posts-navbar-links">POSTS</Link></li>
               <li><Link to={`/users/${this.props.userId}/tagged`}className="posts-navbar-links">TAGGED</Link></li>
             </ul>
+          </div>
+          <div className="posts-grid">
+            <PostGrid userPosts={userPosts}/>
           </div>
         </div>
       </div>

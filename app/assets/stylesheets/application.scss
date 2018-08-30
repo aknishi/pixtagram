@@ -17,12 +17,15 @@
 
 nav {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-end;
+  justify-content: center;
   border-bottom: 1px solid #F0F0F0;
   background-color: white;
-  height: 60px;
+  height: 177px;
   width: 100%;
+  position: fixed;
+  top: -100px;
+  margin-bottom: 60px;
 }
 
 body {
@@ -59,41 +62,46 @@ textarea {
   padding: 10px;
 }
 
-.logo-container {
+.logo-container-link {
   display: flex;
   align-items: center;
-}
-
-.logo-link {
   text-decoration: none;
 }
 
 .logo-text {
-  font-size: 30px;
+  margin-left: 15px;
+  margin-top: 8px;
+  font-size: 33px;
   font-family: 'billabongregular';
   color: black;
-  margin-left: 130px;
 }
 
 .camera-logo {
-  position: absolute;
   height: 34px;
-  margin-left: 60px;
   padding-right: 15px;
   top: 10px;
   border-right: 1px solid black;
 }
 
+.navbar-container {
+  height: 77px;
+}
+
+.navbar-inner-container {
+  width: 930px;
+  padding: 20px 40px 20px 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .icons-container {
+  margin-top: 10px;
+  width: 156px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  ul > li {
-    display: inline-block;
-    margin-right: 30px;
-  }
 }
+
 
 .icon {
   width: 30px;

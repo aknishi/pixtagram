@@ -26,13 +26,15 @@
 .posts-navbar-links {
   text-decoration: none;
   color: $grey;
+  font-family: 'Questrial', sans-serif;
+  font-size: 14px;
 }
 
 .post-index-container {
   display: flex;
   width: 614px;
   background-color: white;
-  justify-content: center;
+  justify-content: cen ter;
   margin: auto;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -153,6 +155,25 @@
 
 .location-input {
   background-color: white;
+}
+
+// Photo grid-item
+.grid-container {
+  width: 935px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.grid-item {
+  width: 293px;
+  height: 293px;
+  margin-bottom: 28px;
+}
+
+.photo-grid-item {
+  width: 100%;
+  height: 100%;
 }
 
 #bold {

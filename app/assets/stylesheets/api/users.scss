@@ -22,6 +22,7 @@
 .user-posts-container {
   width: 100%;
   display: flex;
+  flex-direction: column;
 }
 
 .profile-pic-container {
@@ -46,14 +47,27 @@
 .user-info {
   float: right;
   margin-right: 30px;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   flex-grow: 3;
+
+  > div {
+    margin-bottom: 20px;
+  }
 }
 
 .username {
   font-size: 32px;
-  margin-bottom: 20px;
   display: flex;
+  align-items: flex-end;
+}
+
+.user-stats {
+  display: flex;
+
+  h3 {
+    margin-right: 60px;
+  }
 }
 
 .edit-button {

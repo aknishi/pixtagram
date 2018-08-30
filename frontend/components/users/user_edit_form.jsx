@@ -11,8 +11,16 @@ class UserEditForm extends React.Component {
     this.props.clearErrors();
   }
 
-  componentDidMount() {
-    this.props.fetchUser(this.props.match.params.userId);
+  componentDidlMount() {
+    const { currentUserId } = this.props
+    const { targetUserId } = parseInt(this.props.match.params.userId)
+    console.log(currentUserId);
+    console.log(targetUserId);
+    if (currentUserId !== targetUserId) {
+      this.props.history.push(`/users/${currentUserId}`)
+    } else {
+      this.props.fetchUser(this.props.match.params.userId);
+    }
   }
 
   handleSubmit(e) {
