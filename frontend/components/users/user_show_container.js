@@ -9,9 +9,11 @@ import UserShow from './user_show';
 const mapStateToProps = (state, { match }) => {
   const userId = parseInt(match.params.userId);
   const user = selectUser(state.entities, userId)
+  const currentUserId = state.session.id;
   return({
     userId,
-    user
+    user,
+    currentUserId
   });
 }
 

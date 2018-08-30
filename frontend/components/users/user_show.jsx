@@ -22,6 +22,24 @@ class UserShow extends React.Component {
     this.props.fetchUser(this.props.userId)
   }
 
+  currentUserButtons() {
+    const { currentUserId } = this.props
+    if (currentUserId == this.props.match.params.userId) {
+      return(
+        <div>
+          <button
+            onClick={this.handleEdit}
+            className="edit-button">
+            Edit Profile</button>
+          <button
+            onClick={this.handleLogout}
+            className="logout-button">
+            Log out</button>
+        </div>
+      )
+    }
+  }
+
   render() {
     const { user } = this.props
     return(
@@ -35,14 +53,7 @@ class UserShow extends React.Component {
           <div className="user-info">
             <div className="username">
               <h2>{user.username}</h2>
-              <button
-                onClick={this.handleEdit}
-                className="edit-button">
-                Edit Profile</button>
-              <button
-                onClick={this.handleLogout}
-                className="logout-button">
-                Log out</button>
+              { this.currentUserButtons()}
             </div>
             <h2>{user.name}</h2>
           </div>

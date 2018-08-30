@@ -37,13 +37,13 @@ export const fetchPost = id => dispatch => (
 );
 
 export const createPost = post => dispatch => (
-  APIUtil.createPost(post).then(post => {
-    dispatch(receivePost(post));
-  }).fail(err => dispatch(receiveErrors(err.responseJSON)))
+  APIUtil.createPost(post).then(
+    post => dispatch(receivePost(post)),
+    err => dispatch(receiveErrors(err.responseJSON)))
 );
 
 export const updatePost = post => dispatch => (
-  APIUtil.updatePost(post).then(post => {
-    dispatch(receivePost(post));
-  }).fail(err => dispatch(receiveErrors(err.responseJSON)))
+  APIUtil.updatePost(post).then(
+    post => dispatch(receivePost(post)),
+    err => dispatch(receiveErrors(err.responseJSON)))
 );
