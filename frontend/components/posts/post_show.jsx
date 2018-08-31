@@ -38,6 +38,9 @@ class PostShow extends React.Component {
                 <h4 className="post-location">{post.location}</h4>
               </div>
             </div>
+            <img src={window.deleteIconURL}
+              className="icon" alt="close"
+              onClick={this.navigateToUser}/>
           </div>
           <div className="post-detail-comments">
             <div className="post-comments">

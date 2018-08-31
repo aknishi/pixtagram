@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchUser: id => dispatch(fetchUser(id)),
 });
 
-export default withRouter(connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostGrid));
+)(PostGrid);

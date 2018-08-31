@@ -13,9 +13,10 @@ class PostGridItem extends React.Component {
   }
 
   render() {
+    const { post } = this.props;
     return(
-      <div onClick={this.handleClick}>
-        //overlay of photo for animation with number of likes and comments
+      <div className="grid-item" onClick={this.handleClick}>
+        {/*overlay of photo for animation with number of likes and comments*/}
         <div className="photo-layer">
           <div className="counts">
             <img src={window.whiteHeartURL} className="layer-icon" alt="likes"/>
@@ -33,4 +34,4 @@ class PostGridItem extends React.Component {
 }
 
 
-  export default PostGridItem;
+  export default withRouter(PostGridItem);

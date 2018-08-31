@@ -24,7 +24,7 @@ class PostGrid extends React.Component {
 
   render() {
     const { userPosts } = this.props;
-    //iterate from most current post to oldest
+    {/*iterate from most current post to oldest*/}
     const postGridItems = userPosts.slice(0).reverse().map(
       post => <li key={post.id}> <PostGridItem post={post} /></li>)
 
@@ -39,4 +39,4 @@ class PostGrid extends React.Component {
   }
 }
 
-export default PostGrid;
+export default withRouter(PostGrid);
