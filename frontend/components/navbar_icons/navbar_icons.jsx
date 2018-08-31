@@ -29,7 +29,7 @@ class NavBarIcons extends React.Component {
             </Link>
           </li>
           <li>
-            <Link to={`/users/${currentUser.id}`}>
+            <Link to={`/users/${currentUser.id}/posts`}>
               <img src={window.profileURL} className="icon" alt="profile-page"/>
             </Link>
           </li>

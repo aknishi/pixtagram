@@ -3,7 +3,7 @@ import PostsIndexItem from './posts_index_item';
 
 class PostsIndex extends React.Component {
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchUsers();
     this.props.fetchPosts();
   }

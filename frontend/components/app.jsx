@@ -10,6 +10,8 @@ import UserShowContainer from './users/user_show_container';
 import UserEditFormContainer from './users/user_edit_form_container';
 import PostsIndexContainer from './posts/posts_index_container';
 import PostFormContainer from './posts/post_form_container';
+import PostShowContainer from './posts/post_show_container';
+import PostGridContainer from './posts/post_grid_container';
 
 const App = () => (
   <div>
@@ -31,10 +33,13 @@ const App = () => (
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <Route exact path="/" component={MainContainer} />
-      <ProtectedRoute exact path="/users/:userId" component={UserShowContainer} />
+      <ProtectedRoute path="/users/:userId" component={UserShowContainer} />
       <ProtectedRoute exact path="/users/accounts/:userId/edit" component={UserEditFormContainer} />
       <ProtectedRoute exact path="/users/:userId/upload" component={PostFormContainer} />
+      <Route exact path="/users/:userId/posts" component={PostGridContainer} />
       <ProtectedRoute exact path="/posts/" component={PostsIndexContainer} />
+      <ProtectedRoute exact path="/posts/:postId" component={PostShowContainer} />
+
   </div>
 );
 

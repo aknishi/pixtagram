@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, Route, Switch } from 'react-router-dom';
 import PostGrid from '../posts/post_grid';
 
 class UserShow extends React.Component {
@@ -21,8 +21,8 @@ class UserShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchUser(this.props.match.params.userId)
-    this.props.fetchPosts()
-    document.getElementById('focused').focus();
+    this.props.fetchPosts();
+    document.getElementById("focused").focus();
   }
 
   currentUserButtons() {
@@ -69,13 +69,10 @@ class UserShow extends React.Component {
         <div className="user-posts-container">
           <div className="posts-navbar">
             <ul>
-              <li><Link to={`/users/${this.props.userId}`} className="posts-navbar-links" id="focused">POSTS</Link></li>
+              <li><Link to={`/users/${this.props.userId}/posts`} className="posts-navbar-links" id="focused" >POSTS</Link></li>
               <li><Link to={`/users/${this.props.userId}/saved`}className="posts-navbar-links">SAVED</Link></li>
               <li><Link to={`/users/${this.props.userId}/tagged`}className="posts-navbar-links">TAGGED</Link></li>
             </ul>
-          </div>
-          <div className="posts-grid">
-            <PostGrid userPosts={userPosts}/>
           </div>
         </div>
       </div>
