@@ -33,4 +33,4 @@ class PostGridItem extends React.Component {
 }
 
 
-  export default withRouter(PostGridItem);
+  export default PostGridItem;

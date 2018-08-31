@@ -39,4 +39,4 @@ class PostGrid extends React.Component {
   }
 }
 
-export default withRouter(PostGrid);
+export default PostGrid;

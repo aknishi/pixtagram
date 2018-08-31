@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { selectUser, selectPostsFromUser } from '../../reducers/selectors';
 import { fetchUser } from '../../actions/user_actions';
 import { fetchPosts } from '../../actions/post_actions';
+import { withRouter } from 'react-router-dom';
 import React from 'react';
 import PostGrid from './post_grid';
 
@@ -16,14 +17,15 @@ const mapStateToProps = (state, { match }) => {
     currentUserId,
     userPosts
   });
+
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
   fetchPosts: () => dispatch(fetchPosts()),
   fetchUser: id => dispatch(fetchUser(id)),
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostGrid);
+)(PostGrid));
