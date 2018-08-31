@@ -1,6 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { ProtectedRoute } from '../../util/route_util';
 import PostGridItem from './post_grid_item';
+import UserShowContainer from '../users/user_show_container';
 
 class PostGrid extends React.Component {
   constructor(props){
@@ -29,11 +31,14 @@ class PostGrid extends React.Component {
       post => <li key={post.id}> <PostGridItem post={post} /></li>)
 
     return (
-      <div className="photo-grid-container">
-        <ul className="photo-grid">
-          {postGridItems}
-          {this.emptyObject(userPosts)}
-        </ul>
+      <div>
+        <ProtectedRoute path="/users/:userId/" component={UserShowContainer} />
+        <div className="photo-grid-container">
+          <ul className="photo-grid">
+            {postGridItems}
+            {this.emptyObject(userPosts)}
+          </ul>
+        </div>
       </div>
     )
   }
