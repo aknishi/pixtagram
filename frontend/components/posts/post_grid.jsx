@@ -32,7 +32,6 @@ class PostGrid extends React.Component {
 
     return (
       <div>
-        <ProtectedRoute path="/users/:userId/" component={UserShowContainer} />
         <div className="photo-grid-container">
           <ul className="photo-grid">
             {postGridItems}

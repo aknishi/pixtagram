@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { createPost, clearErrors } from '../../actions/post_actions';
 import PostForm from './post_form';
 
-const mapStateToProps = ( state, { match } ) => ({
+const mapStateToProps = ( state ) => ({
   currentUserId: state.session.id
 });
 

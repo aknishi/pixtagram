@@ -7,7 +7,7 @@ const UserProtected = ({component: Component, path, loggedIn, currentUserId, tar
       if (currentUserId == targetUserId ) {
         return (<Component {...props} />)
       } else {
-        return (<Redirect to={`/users/${currentUserId}`} />)
+        return (<Redirect to={`/users/${currentUserId}/posts`} />)
       }
     } else {
       return (<Redirect to="/login" />)

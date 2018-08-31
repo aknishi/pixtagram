@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, withRouter, Route, Switch } from 'react-router-dom';
-import PostGrid from '../posts/post_grid';
 
 class UserShow extends React.Component {
   constructor(props) {

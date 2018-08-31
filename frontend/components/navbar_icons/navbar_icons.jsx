@@ -19,7 +19,7 @@ class NavBarIcons extends React.Component {
       return(
         <ul className="icons-container">
           <li>
-            <Link to={`/users/upload`}>
+            <Link to={`/users/${currentUser.id}/upload`}>
               <img src={window.uploadURL} className="icon" alt="upload"/>
             </Link>
           </li>
