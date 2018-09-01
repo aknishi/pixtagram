@@ -13,7 +13,7 @@ class PostsIndexItem extends React.Component {
 
   navigateToUser() {
     const { user, post } = this.props
-    this.props.history.push(`/users/${user.id}/posts`);
+    this.props.history.push(`/users/${user.id}/`);
   }
 
   handleLike() {

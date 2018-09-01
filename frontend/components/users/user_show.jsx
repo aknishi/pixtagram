@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter, Route, Switch } from 'react-router-dom';
+import PostGridContainer from '../posts/post_grid_container';
 
 class UserShow extends React.Component {
   constructor(props) {
@@ -68,7 +69,7 @@ class UserShow extends React.Component {
         <div className="user-posts-container">
           <div className="posts-navbar">
             <ul>
-              <li><Link to={`/users/${this.props.userId}/posts`} className="posts-navbar-links" id="focused" >POSTS</Link></li>
+              <li><Link to={`/users/${this.props.userId}`} className="posts-navbar-links" id="focused" >POSTS</Link></li>
               <li><Link to={`/users/${this.props.userId}/saved`}className="posts-navbar-links">SAVED</Link></li>
               <li><Link to={`/users/${this.props.userId}/tagged`}className="posts-navbar-links">TAGGED</Link></li>
             </ul>
