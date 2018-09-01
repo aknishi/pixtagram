@@ -9,6 +9,7 @@
 #  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  name            :string           not null
 #
 
 class User < ApplicationRecord
@@ -18,6 +19,12 @@ class User < ApplicationRecord
 
   has_many :posts,
     foreign_key: :user_id
+
+  has_many :likes,
+    foreign_key: :liker_id
+
+  has_many :comments,
+    foreign_key: :author_id
 
   has_one_attached :profile_photo
 

@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  namespace :api do
+    get 'likes/create'
+    get 'likes/show'
+    get 'likes/destroy'
+  end
+  namespace :api do
+    get 'comments/index'
+    get 'comments/create'
+    get 'comments/destroy'
+  end
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create, :index, :update, :show, :destroy]
     resources :posts
