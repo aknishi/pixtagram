@@ -2,11 +2,12 @@ class Api::PostsController < ApplicationController
   before_action :require_login
 
   def index
-    sleep 2
+    sleep 1
     @posts = Post.all
   end
 
   def show
+    sleep 1
     @post = Post.find(params[:id])
   end
 

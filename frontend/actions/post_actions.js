@@ -5,6 +5,17 @@ export const RECEIVE_POST = 'RECEIVE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const RECEIVE_POST_ERRORS = 'RECEIVE_POST_ERRORS';
 export const CLEAR_POST_ERRORS = 'CLEAR_POST_ERRORS';
+export const START_LOADING_POSTS = "START_LOADING_POSTS";
+export const START_LOADING_POST = "START_LOADING_POST";
+
+
+export const startLoadingPosts = () => ({
+  type: START_LOADING_POSTS
+});
+
+export const startLoadingPost = () => ({
+  type: START_LOADING_POST
+});
 
 const receivePosts = posts => ({
   type: RECEIVE_POSTS,
@@ -30,17 +41,19 @@ export const clearErrors = () => ({
   type: CLEAR_POST_ERRORS
 })
 
-export const fetchPosts = () => dispatch => (
-  APIUtil.fetchPosts().then(posts => (
-    dispatch(receivePosts(posts))
-  ))
-);
+export const fetchPosts = () => dispatch => {
+  dispatch(startLoadingPosts());
+  return APIUtil.fetchPosts()
+  .then(posts => { dispatch(receivePosts(posts))});
+}
 
-export const fetchPost = id => dispatch => (
-  APIUtil.fetchPost(id).then(post => (
-    dispatch(receivePost(post))
-  ))
-);
+export const fetchPost = id => dispatch => {
+  dispatch(startLoadingPost());
+  return APIUtil.fetchPost(id)
+  .then(post => { dispatch(receivePost(post));
+  return post;
+  });
+}
 
 export const deletePost = id => dispatch => (
   APIUtil.deletePost(id).then(() => (

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
-import NavBarIcons from './navbar_icons';
+import NavBar from './navbar';
 
 const matchStateToProps = ({session, entities: { users } }) => ({
   currentUser: users[session.id]
@@ -13,4 +13,4 @@ const matchDispatchToProps = dispatch => ({
 export default connect(
   matchStateToProps,
   matchDispatchToProps
-)(NavBarIcons);
+)(NavBar);

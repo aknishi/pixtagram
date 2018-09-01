@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
-class NavBarIcons extends React.Component {
+class NavBar extends React.Component {
   constructor(props){
     super(props)
     this.handleClick = this.handleClick.bind(this);
@@ -13,7 +13,7 @@ class NavBarIcons extends React.Component {
     this.props.history.push(`/login`);
   }
 
-  render() {
+  navBarIcons() {
     const { currentUser } = this.props
     if (currentUser) {
       return(
@@ -42,6 +42,19 @@ class NavBarIcons extends React.Component {
       )
     }
   }
+  render() {
+    return (
+      <div className="navbar-inner-container">
+        <Link to="/posts" className="logo-container-link">
+          <img src={window.cameraURL} className="camera-logo" alt="camera-logo"/>
+          <h2 className="logo-text">Pixtagram</h2>
+        </Link>
+        <div>
+          {this.navBarIcons()}
+        </div>
+      </div>
+    )
+  }
 };
 
-export default withRouter(NavBarIcons);
+export default withRouter(NavBar);

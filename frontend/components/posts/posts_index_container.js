@@ -9,10 +9,12 @@ const mapStateToProps = ( state ) => {
   const posts = values(state.entities.posts);
   const users = state.entities.users;
   const currentUserId = state.session.id;
+  const loading = state.ui.loading.indexLoading;
   return ({
     posts,
     users,
-    currentUserId
+    currentUserId,
+    loading
   })
 };
 
