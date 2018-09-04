@@ -1,8 +1,15 @@
 import * as APIUtil from '../util/post_api_util';
+import * as commentAPIUtil from '../util/comment_api_util';
+import * as likeAPIUtil from '../util/like_api_util';
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
+export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
+export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+export const RECEIVE_LIKE = 'RECEIVE_LIKE';
+export const REMOVE_LIKE = 'REMOVE_LIKE';
+
 export const RECEIVE_POST_ERRORS = 'RECEIVE_POST_ERRORS';
 export const CLEAR_POST_ERRORS = 'CLEAR_POST_ERRORS';
 export const START_LOADING_POSTS = "START_LOADING_POSTS";
@@ -32,6 +39,27 @@ const removePost = id => ({
   id
 });
 
+const receiveComment = comment => ({
+  type: RECEIVE_COMMENT,
+  post
+});
+
+const removeComment = id => ({
+  type: REMOVE_COMMENT,
+  id
+});
+
+const receiveLike = like => ({
+  type: RECEIVE_LIKE,
+  post
+});
+
+const removeLike = userId => ({
+  type: REMOVE_LIKE,
+  userId
+});
+
+
 const receiveErrors = errors => ({
   type: RECEIVE_POST_ERRORS,
   errors
@@ -55,20 +83,44 @@ export const fetchPost = id => dispatch => {
   });
 }
 
-export const deletePost = id => dispatch => (
-  APIUtil.deletePost(id).then(() => (
-    dispatch(removePost(id))
-  ))
-);
-
 export const createPost = post => dispatch => (
   APIUtil.createPost(post).then(
     post => dispatch(receivePost(post)),
     err => dispatch(receiveErrors(err.responseJSON)))
 );
 
+export const deletePost = id => dispatch => (
+  APIUtil.deletePost(id).then(() => (
+    dispatch(removePost(id))
+  ))
+);
+
 export const updatePost = post => dispatch => (
   APIUtil.updatePost(post).then(
     post => dispatch(receivePost(post)),
     err => dispatch(receiveErrors(err.responseJSON)))
+);
+
+export const createLike = like => dispatch => (
+  likeAPIUtil.createLike(like).then(
+    like => dispatch(receiveLike(like)))
+);
+
+export const deleteLike = id => dispatch => (
+  likeAPIUtil.deleteLike(id).then(() => (
+    dispatch(removeLike(id))
+  ))
+);
+
+export const createComment = comment => dispatch => (
+  commentAPIUtil.createComment(comment).then(
+    comment => dispatch(receiveComment(comment)),
+    err => dispatch(receiveErrors(err.responseJSON)))
+);
+
+
+export const deleteComment = id => dispatch => (
+  commentAPIUtil.deleteComment(id).then(() => (
+    dispatch(removeComment(id))
+  ))
 );

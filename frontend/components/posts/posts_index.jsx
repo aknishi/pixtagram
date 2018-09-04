@@ -4,7 +4,7 @@ import LoadingIcon from './loading_icon';
 
 class PostsIndex extends React.Component {
 
-  componentWillMount() {
+  componentWillReceiveProps() {
     this.props.fetchUsers();
     this.props.fetchPosts();
   }
