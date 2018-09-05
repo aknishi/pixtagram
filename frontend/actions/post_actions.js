@@ -39,24 +39,25 @@ const removePost = id => ({
   id
 });
 
-const receiveComment = comment => ({
+const receiveComment = ({ comment, author }) => ({
   type: RECEIVE_COMMENT,
-  post
+  comment,
+  author
 });
 
-const removeComment = id => ({
+const removeComment = comment => ({
   type: REMOVE_COMMENT,
-  id
+  comment
 });
 
 const receiveLike = like => ({
   type: RECEIVE_LIKE,
-  post
+  like
 });
 
-const removeLike = userId => ({
+const removeLike = like => ({
   type: REMOVE_LIKE,
-  userId
+  like
 });
 
 
@@ -106,10 +107,9 @@ export const createLike = like => dispatch => (
     like => dispatch(receiveLike(like)))
 );
 
-export const deleteLike = id => dispatch => (
-  likeAPIUtil.deleteLike(id).then(() => (
-    dispatch(removeLike(id))
-  ))
+export const deleteLike = like => dispatch => (
+  likeAPIUtil.deleteLike(like).then(
+    like => dispatch(removeLike(like)))
 );
 
 export const createComment = comment => dispatch => (
@@ -119,8 +119,8 @@ export const createComment = comment => dispatch => (
 );
 
 
-export const deleteComment = id => dispatch => (
-  commentAPIUtil.deleteComment(id).then(() => (
-    dispatch(removeComment(id))
+export const deleteComment = comment => dispatch => (
+  commentAPIUtil.deleteComment(comment.id).then(() => (
+    dispatch(removeComment(comment))
   ))
 );

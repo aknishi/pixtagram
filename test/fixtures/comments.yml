@@ -7,7 +7,6 @@
 #  author_id         :integer          not null
 #  post_id           :integer          not null
 #  parent_comment_id :integer
-#  like_count        :integer          not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #

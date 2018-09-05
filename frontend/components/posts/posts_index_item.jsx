@@ -1,14 +1,18 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import values from 'lodash/values';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 class PostsIndexItem extends React.Component {
   constructor(props){
     super(props)
-
     this.navigateToUser = this.navigateToUser.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.handleBookmark = this.handleBookmark.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.likeButton = this.likeButton.bind(this);
+    this.handleComment = this.handleComment.bind(this);
+    this.commentList = this.commentList.bind(this);
   }
 
   navigateToUser() {
@@ -17,7 +21,53 @@ class PostsIndexItem extends React.Component {
   }
 
   handleLike() {
-    console.log("liked!");
+    const { post, createLike, deleteLike, currentUserId } = this.props
+    if (!post.liked) {
+      const like = {liker_id: currentUserId, likeable_id: post.id, likeable_type: "Post"};
+      createLike(like);
+      post.liked = !post.liked
+    } else {
+      const like = post.myLike;
+      deleteLike(like);
+      post.liked = !post.liked
+    }
+  }
+
+  handleComment(e) {
+    const { currentUserId, createComment, post } = this.props
+    if (e.keyCode == 13){
+      console.log("comment posted");
+      const comment = {body: e.currentTarget.value, author_id: currentUserId, post_id: post.id }
+      createComment(comment);
+      e.currentTarget.value = "";
+    }
+  }
+
+  likeButton() {
+    const { post } = this.props;
+    if (post.liked) {
+      return(
+        <img src={window.likedURL} className="icon" alt="liked" onClick={this.handleLike}/>
+      )
+    } else {
+      return(
+        <img src={window.heartURL} className="icon" alt="like" onClick={this.handleLike}/>
+      )
+    }
+  }
+
+  commentList() {
+    const { post } = this.props
+    const commentArr = values(post.comments)
+    if ( commentArr.length > 0 ) {
+      return(
+        commentArr.map(comment => (
+          <div key={comment.id} className="post-body-container">
+            <h3 id="bold">{post.authors[comment.author_id].username}</h3>
+            <h3 className="post-body">{comment.body}</h3>
+          </div>))
+      )
+    }
   }
 
   handleDelete() {
@@ -27,6 +77,10 @@ class PostsIndexItem extends React.Component {
 
   handleBookmark() {
     console.log("Bookmarked!");
+  }
+
+  handleCommentClick() {
+    document.getElementById("add-comment").focus();
   }
 
   deleteButton() {
@@ -57,18 +111,24 @@ class PostsIndexItem extends React.Component {
           </div>
           { this.deleteButton() }
         </div>
-        <div className="post-photo-container">
+        <div className="post-photo-container" onDoubleClick={this.handleLike}>
+          <CSSTransitionGroup
+            transitionName="like"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}>
+              <img src={window.bigWhiteHeartURL} alt="liked!" className="like-heart"/>
+          </CSSTransitionGroup>
           <img className="post-full-photo" src={post.photoUrl}/>
         </div>
         <div className="bottom-block-container">
           <div className="post-icons">
             <div>
-              <img src={window.heartURL} className="icon" alt="heart" onClick={this.handleLike}/>
-              <img src={window.commentURL} className="icon" alt="comment"/>
+              {this.likeButton()}
+              <img src={window.commentURL} className="icon" alt="comment" onClick={this.handleCommentClick}/>
             </div>
             <img src={window.bookmarkURL} className="icon" alt="bookmark" onClick={this.handleBookmark}/>
           </div>
-          <h3 id="bold" className="total-likes">## Likes</h3>
+          <h3 id="bold" className="total-likes">{post.likeIds.length} Likes</h3>
           <div className="post-comments">
             <ul>
               <li>
@@ -78,18 +138,17 @@ class PostsIndexItem extends React.Component {
                 </div>
               </li>
               <li>
-                <div className="post-body-container">
-                  <h3 id="bold">username</h3>
-                  <h3 className="post-body">comments here...</h3>
-                </div>
+                { this.commentList() }
               </li>
             </ul>
             <h4 id="light-grey" className="post-time">{post.time_ago} ago</h4>
           </div>
           <input
             type="text"
+            id="add-comment"
             className="add-commment"
             placeholder="Add a comment..."
+            onKeyDown={this.handleComment}
           />
         </div>
       </div>

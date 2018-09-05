@@ -1,3 +1,65 @@
 // Place all the styles related to the api/likes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// .like-heart-container {
+//   position: absolute;
+//   width: 614px;
+//   height: 614px;
+//   top: 50%;
+//   left: 50%;
+//   opacity: 0;
+//   display: flex;
+//   transform: translate(-50%, -50%);
+//   -ms-transform: translate(-50%, -50%);
+//   justify-content: center;
+//   align-items: center;
+//   z-index: 1;
+// }
+//
+// offsets = translateX(-50%) translateY(-50%)
+//
+// .likes-heart
+//   opacity 0
+//   transition all 0.5s // time to fade out after its done
+//   transform offsets scale(5) // this is the "end state"
+//   display block
+//   &:like-enter
+//     transition: all .2s
+//     transform offsets scale(1)
+//     opacity 1
+//     &.like-enter-active
+//       transform offsets scale(5)
+//   .like-leave-active
+//     display none
+
+.like-heart {
+  width: 614px;
+  height: 614px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  &:active {
+    opacity: 1;
+    transition: 0.5s
+  }
+}
+
+.like-enter {
+  opacity: 0.1;
+}
+
+.like-enter-active {
+  opacity: 1;
+  transition: .5s ease;
+}
+
+.like-leave-active {
+  opacity: 0;
+}

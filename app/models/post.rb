@@ -8,13 +8,12 @@
 #  user_id    :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  like_count :integer          default(0), not null
 #
 
 class Post < ApplicationRecord
   include ActionView::Helpers::DateHelper
   include Likeable
-  validates :like_count, numericality: {only_integer: true, minimum: 0}
+  # validates :like_count, numericality: {only_integer: true, minimum: 0}
   validate :ensure_photo
 
   has_one_attached :photo
@@ -34,7 +33,11 @@ class Post < ApplicationRecord
     end
   end
 
-  def liked_by?(user)
-    likes.exists?(liker_id: user.id)
+  def liked_by?(userId)
+    likes.exists?(liker_id: userId)
+  end
+
+  def current_user_like(userId)
+    likes.find_by(liker_id: userId)
   end
 end

@@ -7,7 +7,6 @@ class Api::PostsController < ApplicationController
   end
 
   def show
-    sleep 1
     @post = Post.find(params[:id])
   end
 

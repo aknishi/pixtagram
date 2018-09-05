@@ -4,18 +4,23 @@ import LoadingIcon from './loading_icon';
 
 class PostsIndex extends React.Component {
 
-  componentWillReceiveProps() {
-    this.props.fetchUsers();
-    this.props.fetchPosts();
-  }
-
   componentDidMount() {
     this.props.fetchUsers();
     this.props.fetchPosts();
   }
 
   render() {
-    const { posts, users, deletePost, currentUserId, loading } = this.props;
+    const {
+      posts,
+      users,
+      deletePost,
+      fetchPost,
+      currentUserId,
+      loading,
+      createLike,
+      createComment,
+      deleteLike,
+      deleteComment } = this.props;
 
     if (loading) { return <LoadingIcon />; }
 
@@ -26,6 +31,11 @@ class PostsIndex extends React.Component {
         user={users[post.user_id]}
         deletePost={deletePost}
         currentUserId={currentUserId}
+        createLike={createLike}
+        deleteLike={deleteLike}
+        createComment={createComment}
+        deleteComment={deleteComment}
+        fetchPost={fetchPost}
         />
     ))
     return(

@@ -2,7 +2,9 @@
   json.set! post.id do
     json.partial! "api/posts/post", post: post
     json.photoUrl url_for(post.photo)
-    json.likeIds post.likes.pluck[:id]
+    json.likeIds post.likes.pluck(:id)
+    json.liked post.liked_by?(current_user.id)
+    json.myLike post.current_user_like(current_user.id)
     post.comments.includes(:author).each do |comment|
       json.comments do
         json.set! comment.id do
