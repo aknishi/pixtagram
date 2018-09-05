@@ -1,12 +1,9 @@
 import * as APIUtil from '../util/post_api_util';
-import * as commentAPIUtil from '../util/comment_api_util';
 import * as likeAPIUtil from '../util/like_api_util';
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
-export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
-export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 export const RECEIVE_LIKE = 'RECEIVE_LIKE';
 export const REMOVE_LIKE = 'REMOVE_LIKE';
 
@@ -37,17 +34,6 @@ const receivePost = post => ({
 const removePost = id => ({
   type: REMOVE_POST,
   id
-});
-
-const receiveComment = ({ comment, author }) => ({
-  type: RECEIVE_COMMENT,
-  comment,
-  author
-});
-
-const removeComment = comment => ({
-  type: REMOVE_COMMENT,
-  comment
 });
 
 const receiveLike = like => ({
@@ -110,17 +96,4 @@ export const createLike = like => dispatch => (
 export const deleteLike = like => dispatch => (
   likeAPIUtil.deleteLike(like).then(
     like => dispatch(removeLike(like)))
-);
-
-export const createComment = comment => dispatch => (
-  commentAPIUtil.createComment(comment).then(
-    comment => dispatch(receiveComment(comment)),
-    err => dispatch(receiveErrors(err.responseJSON)))
-);
-
-
-export const deleteComment = comment => dispatch => (
-  commentAPIUtil.deleteComment(comment.id).then(() => (
-    dispatch(removeComment(comment))
-  ))
 );

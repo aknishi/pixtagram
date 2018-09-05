@@ -37,9 +37,11 @@ class PostShow extends React.Component {
     if (!post.liked) {
       const like = {liker_id: currentUserId, likeable_id: post.id, likeable_type: "Post"};
       createLike(like);
+      post.liked = !post.liked
     } else {
       const like = post.myLike;
       deleteLike(like);
+      post.liked = !post.liked
     }
   }
 

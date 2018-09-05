@@ -4,6 +4,7 @@ import configureStore from './store/store';
 import Root from './components/root';
 import { fetchUsers, updateUser } from './actions/user_actions';
 import { fetchPosts, deletePost } from './actions/post_actions';
+import { fetchComments } from './actions/comment_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       store = configureStore();
     }
+  window.fetchComments = fetchComments;
   window.dispatch = store.dispatch;
   window.getState = store.getState;
   window.deletePost = deletePost;

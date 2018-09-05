@@ -1,6 +1,6 @@
 @comments.each do |comment|
   json.set! comment.id do
-    json.patial! 'api/comments/comment', comment: comment
-    json.replyIds []
+    json.partial! "api/comments/comment", comment: comment
+    json.replyIds comment.replies.pluck(:id)
   end
 end

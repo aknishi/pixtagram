@@ -7,6 +7,7 @@ class PostsIndex extends React.Component {
   componentDidMount() {
     this.props.fetchUsers();
     this.props.fetchPosts();
+    this.props.fetchComments();
   }
 
   render() {
@@ -20,24 +21,25 @@ class PostsIndex extends React.Component {
       createLike,
       createComment,
       deleteLike,
-      deleteComment } = this.props;
-
+      deleteComment,
+      comments } = this.props;
     if (loading) { return <LoadingIcon />; }
-
     const postItems = posts.slice(0).reverse().map(post => (
-      <PostsIndexItem
-        key={post.id}
-        post={post}
-        user={users[post.user_id]}
-        deletePost={deletePost}
-        currentUserId={currentUserId}
-        createLike={createLike}
-        deleteLike={deleteLike}
-        createComment={createComment}
-        deleteComment={deleteComment}
-        fetchPost={fetchPost}
-        />
-    ))
+        <PostsIndexItem
+          key={post.id}
+          post={post}
+          user={users[post.user_id]}
+          users={users}
+          comments={comments}
+          deletePost={deletePost}
+          currentUserId={currentUserId}
+          createLike={createLike}
+          deleteLike={deleteLike}
+          createComment={createComment}
+          deleteComment={deleteComment}
+          fetchPost={fetchPost}
+          />
+      ))
     return(
       <div>
         { postItems }

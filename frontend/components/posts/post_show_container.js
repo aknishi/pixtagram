@@ -3,9 +3,10 @@ import { selectPost, selectUser} from '../../reducers/selectors';
 import {
   fetchPost,
   createLike,
-  deleteLike,
+  deleteLike } from '../../actions/post_actions';
+import {
   createComment,
-  deleteComment } from '../../actions/post_actions';
+  deleteComment } from '../../actions/comment_actions';
 
 import React from 'react';
 import PostShow from './post_show';

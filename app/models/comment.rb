@@ -20,8 +20,9 @@ class Comment < ApplicationRecord
   belongs_to :author, class_name: :User
 
   has_many :replies,
-    foreign_key: :parent_comment_id
-    
+    foreign_key: :parent_comment_id,
+    class_name: :Comment
+
   def liked_by?(user)
     likes.exists?(liker_id: user.id)
   end

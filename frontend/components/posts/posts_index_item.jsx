@@ -36,7 +36,6 @@ class PostsIndexItem extends React.Component {
   handleComment(e) {
     const { currentUserId, createComment, post } = this.props
     if (e.keyCode == 13){
-      console.log("comment posted");
       const comment = {body: e.currentTarget.value, author_id: currentUserId, post_id: post.id }
       createComment(comment);
       e.currentTarget.value = "";
@@ -57,15 +56,20 @@ class PostsIndexItem extends React.Component {
   }
 
   commentList() {
-    const { post } = this.props
-    const commentArr = values(post.comments)
-    if ( commentArr.length > 0 ) {
-      return(
-        commentArr.map(comment => (
-          <div key={comment.id} className="post-body-container">
-            <h3 id="bold">{post.authors[comment.author_id].username}</h3>
+    const { post, comments, users } = this.props
+    if ( post.commentIds.length > 0 ) {
+      const postComments = comments.filter(comment => post.commentIds.includes(comment.id));
+      const commentItems = postComments.map(comment => (
+        <li key={comment.id}>
+          <div className="post-body-container">
+            <h3 id="bold">{users[comment.author_id].username}</h3>
             <h3 className="post-body">{comment.body}</h3>
-          </div>))
+          </div>
+        </li>))
+      return(
+        <ul>
+          { commentItems }
+        </ul>
       )
     }
   }
@@ -137,10 +141,8 @@ class PostsIndexItem extends React.Component {
                   <h3 className="post-body">{post.body}</h3>
                 </div>
               </li>
-              <li>
-                { this.commentList() }
-              </li>
             </ul>
+            { this.commentList() }
             <h4 id="light-grey" className="post-time">{post.time_ago} ago</h4>
           </div>
           <input
