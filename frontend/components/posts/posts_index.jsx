@@ -38,6 +38,7 @@ class PostsIndex extends React.Component {
           createComment={createComment}
           deleteComment={deleteComment}
           fetchPost={fetchPost}
+          loading={loading}
           />
       ))
     return(

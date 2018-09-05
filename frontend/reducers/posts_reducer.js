@@ -2,11 +2,9 @@ import {
   RECEIVE_POST,
   RECEIVE_POSTS,
   REMOVE_POST,
-  RECEIVE_COMMENT,
   RECEIVE_LIKE,
-  REMOVE_COMMENT,
   REMOVE_LIKE } from '../actions/post_actions';
-
+import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions'
 import merge from 'lodash/merge';
 
 const postsReducer = (state = {}, action) => {

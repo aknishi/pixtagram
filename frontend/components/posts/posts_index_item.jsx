@@ -101,7 +101,7 @@ class PostsIndexItem extends React.Component {
   }
 
   render() {
-    const { post, user } = this.props
+    const { post, user } = this.props;
 
     return(
       <div className="post-index-container">

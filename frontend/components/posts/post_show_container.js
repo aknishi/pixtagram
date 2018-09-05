@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { selectPost, selectUser} from '../../reducers/selectors';
+import { selectPost, selectUser } from '../../reducers/selectors';
 import {
   fetchPost,
   createLike,
@@ -7,19 +7,23 @@ import {
 import {
   createComment,
   deleteComment } from '../../actions/comment_actions';
-
+import values from 'lodash/values';
 import React from 'react';
 import PostShow from './post_show';
 
 const mapStateToProps = (state, { match }) => {
   const postId = parseInt(match.params.postId);
   const post = selectPost(state.entities, postId);
+  const comments = values(state.entities.comments);
+  const users = state.entities.users;
   const currentUserId = state.session.id;
   const user = selectUser(state.entities, post.user_id)
   return({
     post,
     user,
-    currentUserId
+    currentUserId,
+    comments,
+    users
   });
 }
 
