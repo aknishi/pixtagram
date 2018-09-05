@@ -11,3 +11,8 @@ export const selectPost = ({ posts }, postId) => {
 export const selectPostsFromUser = ( posts, userId ) => {
   return values(posts).filter(post => post.user_id == userId);
 }
+
+export const selectPostLikers = ( users, post ) => {
+  const likers = post.likerIds.map(likerId => users[likerId])
+  return values(likers);
+}

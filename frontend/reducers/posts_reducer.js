@@ -24,7 +24,7 @@ const postsReducer = (state = {}, action) => {
       nextState = merge({}, state);
       if (action.like.likeable_type === "Post") {
         const postId = action.like.likeable_id
-        nextState[postId].likeIds.push(action.like.id);
+        nextState[postId].likerIds.push(action.like.liker_id);
         nextState[postId].myLike = action.like
       }
       return nextState;
@@ -32,10 +32,10 @@ const postsReducer = (state = {}, action) => {
       nextState = merge({}, state);
       if (action.like.likeable_type === "Post") {
         const postId = action.like.likeable_id
-        const idx = nextState[postId].likeIds.indexOf(action.like.id)
-        delete nextState[postId].likeIds[idx]
+        const idx = nextState[postId].likerIds.indexOf(action.like.liker_id)
+        delete nextState[postId].likerIds[idx]
         //remove empty elements in array
-        nextState[postId].likeIds = nextState[postId].likeIds.filter(Number);
+        nextState[postId].likerIds = nextState[postId].likerIds.filter(Number);
       }
       return nextState;
     case RECEIVE_COMMENT:
@@ -47,7 +47,7 @@ const postsReducer = (state = {}, action) => {
       const idx = nextState[action.comment.post_id].commentIds.indexOf(action.comment.id)
       delete nextState[postId].commentIds[idx]
       //remove empty elements in array
-      nextState[postId].likeIds = nextState[postId].commentIds.filter(Number);
+      nextState[postId].commentIds = nextState[postId].commentIds.filter(Number);
       return nextState;
     default:
       return state;

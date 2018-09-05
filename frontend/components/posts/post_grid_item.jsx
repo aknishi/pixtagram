@@ -15,18 +15,17 @@ class PostGridItem extends React.Component {
 
   render() {
     const { post } = this.props;
-    const commentsCount = values(post.comments).length;
     return(
       <div className="grid-item" onClick={this.handleClick}>
         {/*overlay of photo for animation with number of likes and comments*/}
         <div className="photo-layer">
           <div className="counts">
             <img src={window.whiteHeartURL} className="layer-icon" alt="likes"/>
-            <span><b>{post.likeIds.length}</b></span>
+            <span><b>{post.likerIds.length}</b></span>
           </div>
           <div className="counts">
             <img src={window.whiteCommentURL} className="layer-icon" alt="comments"/>
-            <span><b>{commentsCount}</b></span>
+            <span><b>{post.commentIds.length}</b></span>
           </div>
         </div>
         <img className="photo-grid-item" src={post.photoUrl}/>

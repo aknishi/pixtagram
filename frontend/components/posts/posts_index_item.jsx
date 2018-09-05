@@ -7,6 +7,7 @@ class PostsIndexItem extends React.Component {
   constructor(props){
     super(props)
     this.navigateToUser = this.navigateToUser.bind(this);
+    this.navigateToLikes = this.navigateToLikes.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.handleBookmark = this.handleBookmark.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -18,6 +19,11 @@ class PostsIndexItem extends React.Component {
   navigateToUser() {
     const { user, post } = this.props
     this.props.history.push(`/users/${user.id}/`);
+  }
+
+  navigateToLikes() {
+    const { post } = this.props
+    this.props.history.push(`/posts/${post.id}/liked_by`);
   }
 
   handleLike() {
@@ -132,7 +138,7 @@ class PostsIndexItem extends React.Component {
             </div>
             <img src={window.bookmarkURL} className="icon" alt="bookmark" onClick={this.handleBookmark}/>
           </div>
-          <h3 id="bold" className="total-likes">{post.likeIds.length} Likes</h3>
+          <h3 id="bold" className="total-likes" onClick={this.navigateToLikes}>{post.likerIds.length} Likes</h3>
           <div className="post-comments">
             <ul>
               <li>

@@ -128,7 +128,7 @@ class PostShow extends React.Component {
                 </div>
                 <img src={window.bookmarkURL} className="icon" alt="bookmark" onClick={this.handleBookmark}/>
               </div>
-              <h3 id="bold" className="total-likes">{post.likeIds.length} Likes</h3>
+              <h3 id="bold" className="total-likes">{post.likerIds.length} Likes</h3>
               <h4 id="light-grey" className="post-time">{post.time_ago} ago</h4>
               <input
                 type="text"

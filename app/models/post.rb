@@ -23,6 +23,10 @@ class Post < ApplicationRecord
   has_many :comments,
     foreign_key: :post_id
 
+  has_many :likers,
+    through: :likes,
+    source: :liker
+
   def time_ago
     time_ago_in_words(self.created_at)
   end

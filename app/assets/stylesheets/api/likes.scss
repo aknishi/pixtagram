@@ -33,6 +33,8 @@
 //   .like-leave-active
 //     display none
 
+@import "variables";
+
 .like-heart {
   width: 614px;
   height: 614px;
@@ -62,4 +64,82 @@
 
 .like-leave-active {
   opacity: 0;
+}
+
+// Likers
+.dark-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 4;
+}
+
+.likers-container {
+  position: fixed;
+  width: 400px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  margin-top: -250px;
+  margin-left: -250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: white;
+  overflow: scroll;
+  z-index: 5;
+}
+
+.likes-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 400;
+  height: 50px;
+  width: 100%;
+  border-bottom: 1px solid $light-grey;
+}
+
+.likers-list {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px 20px 20px;
+}
+
+.likers-link {
+  display: flex;
+  text-decoration: none;
+}
+
+.liker-item {
+  margin-bottom: 10px;
+}
+
+.liker-username{
+  font-size: 14px;
+  color: black;
+  margin-bottom: 4px;
+}
+
+.liker-name {
+  font-size: 14px;
+  color: $grey;
+}
+
+.tiny-profile-pic {
+  width: 28px;
+  height: 28px;
+  background-color: white;
+  border-radius: 14px;
+  border: 1px solid $light-grey;
+  margin-right: 10px;
+}
+
+#float-right {
+  float: right;
 }
