@@ -10,7 +10,7 @@ class PostGridItem extends React.Component {
 
   handleClick(e) {
     const { post } = this.props;
-    this.props.history.push(`/posts/${post.id}`)
+    this.props.history.push(`/users/posts/${post.id}`)
   }
 
   render() {

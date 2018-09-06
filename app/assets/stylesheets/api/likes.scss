@@ -68,7 +68,7 @@
 
 // Likers
 .dark-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -96,7 +96,7 @@
 
 .likes-title {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   font-size: 16px;
   font-weight: 400;
@@ -140,6 +140,8 @@
   margin-right: 10px;
 }
 
-#float-right {
-  float: right;
+.close-icon {
+  width: 20px;
+  height: 20px;
+  padding-right: 15px;
 }

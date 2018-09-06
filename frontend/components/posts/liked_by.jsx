@@ -29,9 +29,10 @@ class LikedBy extends React.Component {
         <div>
           <div className="likers-container">
             <div className="likes-title">
+              <div className="empty-div"></div>
               <h2>Likes</h2>
               <img src={window.deleteIconURL}
-                className="icon" id="float-right" alt="close"
+                className="close-icon" alt="close"
                 onClick={this.navigateToPosts.bind(this)}/>
             </div>
             <ul className="likers-list">

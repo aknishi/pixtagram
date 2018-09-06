@@ -1,16 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import NotificationsDropdownContainer from './notifications_dropdown_container';
 
 class NavBar extends React.Component {
   constructor(props){
     super(props)
     this.handleClick = this.handleClick.bind(this);
+    this.navigateToIndex = this.navigateToIndex.bind(this);
+    this.handleNotifications = this.handleNotifications.bind(this);
   }
 
   handleClick() {
     this.props.logout();
     this.props.history.push(`/login`);
+  }
+
+  navigateToIndex() {
+    this.props.history.push(`/posts`);
+  }
+
+  handleNotifications() {
+    $('#notifications-dropdown').removeClass('hidden');
+    $(document).on('click', this.hideDropdown);
+  }
+
+  hideDropdown() {
+    $('#notifications-dropdown').addClass('hidden');
   }
 
   navBarIcons() {
@@ -23,10 +39,9 @@ class NavBar extends React.Component {
               <img src={window.uploadURL} className="icon" alt="upload"/>
             </Link>
           </li>
-          <li>
-            <Link to={`/users/${currentUser.id}/notifications`}>
-              <img src={window.heartURL} className="icon" alt="heart"/>
-            </Link>
+          <li id="notifications-dropdown-btn" className="heart-button">
+            <img src={window.heartURL} className="icon" alt="heart" onClick={this.handleNotifications}/>
+            <NotificationsDropdownContainer/>
           </li>
           <li>
             <Link to={`/users/${currentUser.id}`}>
@@ -45,10 +60,10 @@ class NavBar extends React.Component {
   render() {
     return (
       <div className="navbar-inner-container">
-        <Link to="/posts" className="logo-container-link">
+        <div className="logo-container-link" onClick={this.navigateToIndex}>
           <img src={window.cameraURL} className="camera-logo" alt="camera-logo"/>
           <h2 className="logo-text">Pixtagram</h2>
-        </Link>
+        </div>
         <div>
           {this.navBarIcons()}
         </div>

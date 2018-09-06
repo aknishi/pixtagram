@@ -1,0 +1,22 @@
+ @import "variables";
+
+.notifications-dropdown {
+	position: absolute;
+	top: 30px;
+	right: 0;
+	background-color: #fff;
+	border: 1px solid $light-grey;
+	border-radius: 3px;
+	padding: 10px;
+	width: 225px;
+	z-index: 1;
+	color: $grey;
+	text-align: left;
+	box-shadow: -1px 4px 6px 1px rgba(0,0,0,0.09);
+	font-weight: initial;
+}
+
+.heart-button {
+  position: relative;
+  z-index: 5;
+}
