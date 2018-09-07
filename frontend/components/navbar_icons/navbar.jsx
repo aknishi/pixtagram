@@ -57,6 +57,21 @@ class NavBar extends React.Component {
       )
     }
   }
+  searchBar() {
+    const { currentUser } = this.props
+    if (currentUser) {
+      return(
+        <div className="search">
+          <span className="fa fa-search"></span>
+          <input
+            type="text"
+            placeholder="Search"
+            >
+          </input>
+        </div>
+      )
+    }
+  }
   render() {
     return (
       <div className="navbar-inner-container">
@@ -64,6 +79,7 @@ class NavBar extends React.Component {
           <img src={window.cameraURL} className="camera-logo" alt="camera-logo"/>
           <h2 className="logo-text">Pixtagram</h2>
         </div>
+        {this.searchBar()}
         <div>
           {this.navBarIcons()}
         </div>

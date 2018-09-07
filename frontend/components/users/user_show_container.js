@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectUser, selectPostsFromUser } from '../../reducers/selectors';
-import { fetchUser } from '../../actions/user_actions';
+import { fetchUser, createFollow, deleteFollow } from '../../actions/user_actions';
 import { fetchPosts } from '../../actions/post_actions';
 import { logout } from '../../actions/session_actions';
 import React from 'react';
@@ -24,7 +24,9 @@ const mapStateToProps = (state, { match }) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchPosts: () => dispatch(fetchPosts()),
   fetchUser: id => dispatch(fetchUser(id)),
-  logout: () => dispatch(logout())
+  logout: () => dispatch(logout()),
+  createFollow: follow => dispatch(createFollow(follow)),
+  deleteFollow: follow => dispatch(deleteFollow(follow))
 });
 
 export default connect(

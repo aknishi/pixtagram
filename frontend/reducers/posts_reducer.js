@@ -36,6 +36,7 @@ const postsReducer = (state = {}, action) => {
         delete nextState[postId].likerIds[idx]
         //remove empty elements in array
         nextState[postId].likerIds = nextState[postId].likerIds.filter(Number);
+        nextState[postId].myLike = null;
       }
       return nextState;
     case RECEIVE_COMMENT:

@@ -28,6 +28,22 @@ class User < ApplicationRecord
 
   has_one_attached :profile_photo
 
+  has_many :in_follows,
+    foreign_key: :followee_id,
+    class_name: :Follow
+
+  has_many :out_follows,
+    foreign_key: :follower_id,
+    class_name: :Follow
+
+  has_many :followers,
+    through: :in_follows,
+    source: :follower
+
+  has_many :followees,
+    through: :out_follows,
+    source: :followee
+
   attr_reader :password
 
   after_initialize :ensure_session_token
@@ -59,5 +75,21 @@ class User < ApplicationRecord
 
   def ensure_session_token
     self.session_token ||= User.generate_session_token
+  end
+
+  def followed_user_ids
+    @followed_user_ids ||= out_follows.pluck(:followee_id)
+  end
+
+  def follows?(user)
+    followed_user_ids.include?(user.id)
+  end
+
+  def my_follow(current_user)
+    if current_user
+      in_follows.find_by(follower_id: current_user.id)
+    else
+      nil
+    end
   end
 end

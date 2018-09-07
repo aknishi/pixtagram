@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link, withRouter, Route, Switch } from 'react-router-dom';
 import PostGridContainer from '../posts/post_grid_container';
+import UnfollowWindow from './unfollow_window';
 
 class UserShow extends React.Component {
   constructor(props) {
     super(props)
 
+    this.showUnfollowWindow = this.showUnfollowWindow.bind(this);
+    this.handleFollow = this.handleFollow.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
@@ -15,8 +18,22 @@ class UserShow extends React.Component {
   }
 
   handleLogout() {
-    this.props.logout();
-    this.props.history.push(`/login`);
+    this.props.logout().then(this.props.history.push(`/login`))
+  }
+
+  handleFollow() {
+    const { currentUserId, userId, createFollow } = this.props;
+    const follow = { follower_id: currentUserId, followee_id: userId }
+    createFollow(follow);
+  }
+
+  showUnfollowWindow() {
+    $('#unfollow-window').removeClass('hidden');
+    $(document).on('click', this.hideWindow);
+  }
+
+  hideWindow() {
+    $('#unfollow-window').addClass('hidden');
   }
 
   componentDidMount() {
@@ -43,8 +60,34 @@ class UserShow extends React.Component {
     }
   }
 
+  followButtons() {
+    const { currentUserId, userId, user } = this.props
+
+    if (currentUserId != userId) {
+      if (user.followerIds.includes(currentUserId)) {
+        return(
+          <div>
+            <button
+              onClick={this.showUnfollowWindow}
+              className="edit-button">
+              Following</button>
+          </div>
+        )
+      } else {
+        return(
+          <div>
+            <button
+              onClick={this.handleFollow}
+              className="button" id="follow-button">
+              Follow</button>
+          </div>
+        )
+      }
+    }
+  }
+
   render() {
-    const { user, userPosts } = this.props
+    const { user, userPosts, deleteFollow} = this.props
     return(
       <div className="user-profile-container">
         <div className="user-info-container">
@@ -57,6 +100,8 @@ class UserShow extends React.Component {
             <div className="username">
               <h2>{user.username}</h2>
               { this.currentUserButtons()}
+              { this.followButtons()}
+              <UnfollowWindow deleteFollow={deleteFollow} user={user} />
             </div>
             <div className="user-stats">
               <h3><b>{userPosts.length}</b> posts</h3>
