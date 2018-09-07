@@ -105,8 +105,8 @@ class UserShow extends React.Component {
             </div>
             <div className="user-stats">
               <h3><b>{userPosts.length}</b> posts</h3>
-              <h3><b>XX</b> followers</h3>
-              <h3><b>XX</b> following</h3>
+              <h3><b>{user.followerIds.length}</b> followers</h3>
+              <h3><b>{user.followingIds.length}</b> following</h3>
             </div>
             <div><h2>{user.name}</h2></div>
           </div>
