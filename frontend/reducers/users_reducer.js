@@ -24,7 +24,7 @@ const usersReducer = (state = {}, action) => {
       follow = action.follow;
       nextState[follow.follower_id].followingIds.push(follow.followeee_id);
       nextState[follow.followee_id].followerIds.push(follow.follower_id);
-      nextState[follow.followee_id].follows = true;
+      nextState[follow.followee_id].myFollow = follow;
       return nextState;
     case REMOVE_FOLLOW:
       nextState = merge({}, state);

@@ -4,8 +4,8 @@ class NotificationsDropdown extends React.Component {
   render() {
     return(
       <ul id="notifications-dropdown" className="notifications-dropdown hidden">
-        <li>Notifications Here</li>
-        <li>Something here</li>
+        <li>Notifications</li>
+        <li>Placeholder here</li>
       </ul>
     )
   }
