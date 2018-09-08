@@ -1,6 +1,11 @@
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
 @import "variables";
 
+.search-container{
+  display: flex;
+  align-items: center;
+}
+
 .search{
   position: relative;
   display: flex;
@@ -8,7 +13,7 @@
 }
 
 .search input {
-  width: 199px;
+  width: 197px;
   height: 12px;
   padding: 7px;
 }
@@ -16,7 +21,59 @@
 .search input { text-indent: 32px;}
 .search .fa-search {
   position: absolute;
-  top: 13px;
+  top: 8px;
   left: 10px;
   color: $mid-grey;
+}
+
+.search-results {
+  position: fixed;
+  top: 50px;
+  background-color: white;
+  width: 210px;
+  max-height: 360px;
+  overflow: scroll;
+  border: 1px solid $light-grey;
+	border-radius: 3px;
+	z-index: 4;
+	text-align: left;
+	box-shadow: -1px 4px 6px 1px rgba(0,0,0,0.09);
+}
+
+.user-link {
+  display: flex;
+  text-decoration: none;
+}
+
+.search-result-item {
+  margin-top: 5px;
+  margin-bottom:5px;
+  padding: 8px 14px 8px 14px;
+
+  &:hover {
+    background-color: #fafafa;
+  }
+}
+
+.search-username{
+  margin-bottom: 3px;
+  font-size: 14px;
+  color: black;
+}
+
+.search-name {
+  font-size: 14px;
+  color: $grey;
+}
+
+.arrow {
+  position: fixed;
+  border-color: transparent transparent #fff;
+  border-style: solid;
+  border-width: 0 10px 10px;
+  height: 0;
+  left: 110px;
+  top: -10px;
+  width: 0;
+  z-index: 3;
 }

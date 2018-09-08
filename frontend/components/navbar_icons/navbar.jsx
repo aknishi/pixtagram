@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import NotificationsDropdownContainer from './notifications_dropdown_container';
+import UserSearch from './user_search';
 
 class NavBar extends React.Component {
   constructor(props){
@@ -58,17 +59,10 @@ class NavBar extends React.Component {
     }
   }
   searchBar() {
-    const { currentUser } = this.props
+    const { currentUser, users } = this.props
     if (currentUser) {
       return(
-        <div className="search">
-          <span className="fa fa-search"></span>
-          <input
-            type="text"
-            placeholder="Search"
-            >
-          </input>
-        </div>
+        <UserSearch users={users} />
       )
     }
   }
