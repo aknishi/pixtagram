@@ -32,6 +32,8 @@ const App = () => (
       <ProtectedRoute path="/posts" component={PostsIndexContainer} />
       <ProtectedRoute exact path="/users/posts/:postId" component={PostShowContainer} />
       <ProtectedRoute exact path="/users/:userId" component={UserShowContainer} />
+      <ProtectedRoute exact path="/users/:userId/saved" component={UserShowContainer} />
+      <ProtectedRoute exact path="/users/:userId/tagged" component={UserShowContainer} />
       <ProtectedRoute exact path="/users/:userId" component={PostGridContainer} />
       <ProtectedRoute exact path="/users/:userId/upload" component={PostFormContainer} />
   </div>
