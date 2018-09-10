@@ -13,6 +13,7 @@ import PostShowContainer from './posts/post_show_container';
 import PostGridContainer from './posts/post_grid_container';
 import UserShowContainer from './users/user_show_container';
 import LikedByContainer from './posts/liked_by_container';
+import SavedPostsGridContainer from './posts/saved_posts_grid_container';
 
 const App = () => (
   <div>
@@ -35,6 +36,7 @@ const App = () => (
       <ProtectedRoute exact path="/users/:userId/saved" component={UserShowContainer} />
       <ProtectedRoute exact path="/users/:userId/tagged" component={UserShowContainer} />
       <ProtectedRoute exact path="/users/:userId" component={PostGridContainer} />
+      <ProtectedRoute exact path="/users/:userId/saved" component={SavedPostsGridContainer} />
       <ProtectedRoute exact path="/users/:userId/upload" component={PostFormContainer} />
   </div>
 );

@@ -1,11 +1,12 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 class UserEditForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = this.props.user;
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.checkPermission = this.checkPermission.bind(this);
   }
   componentWillUnmount() {
     this.props.clearErrors();
@@ -14,8 +15,6 @@ class UserEditForm extends React.Component {
   componentDidlMount() {
     const { currentUserId } = this.props
     const { targetUserId } = parseInt(this.props.match.params.userId)
-    console.log(currentUserId);
-    console.log(targetUserId);
     if (currentUserId !== targetUserId) {
       this.props.history.push(`/users/${currentUserId}`)
     } else {
@@ -80,8 +79,16 @@ class UserEditForm extends React.Component {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
 
+  checkPermission() {
+    const { user, currentUserId } = this.props;
+    if (user.id !== currentUserId) {
+      this.props.history.push(`/users/${currentUserId}`);
+    }
+  }
+
   render() {
-    const { user } = this.props
+    const { user } = this.props;
+    this.checkPermission();
     return(
       <div className="form-container">
         <form className="user-edit-form-box" onSubmit={this.handleSubmit}>

@@ -18,8 +18,17 @@
   }
 
   ul > li {
-    margin: 15px 40px 15px 40px;
+    margin: 0px 80px 0px 80px;
+    display: flex;
+    align-items: center;
+    height: 50px;
   }
+}
+
+.posts-navbar-icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
 }
 
 .posts-navbar-links {
@@ -315,4 +324,17 @@
 
 #light-grey {
   color: $grey;
+}
+
+#selected-item {
+  border-top: 1px solid black;
+}
+
+#selected-link {
+  color: black;
+  font-weight: 600;
+}
+
+#not-selected {
+  color: $mid-grey;
 }

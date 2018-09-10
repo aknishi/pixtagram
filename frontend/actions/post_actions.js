@@ -1,11 +1,14 @@
 import * as APIUtil from '../util/post_api_util';
 import * as likeAPIUtil from '../util/like_api_util';
+import * as bookmarkAPIUtil from '../util/bookmark_api_util';
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const RECEIVE_LIKE = 'RECEIVE_LIKE';
 export const REMOVE_LIKE = 'REMOVE_LIKE';
+export const RECEIVE_BOOKMARK = 'RECEIVE_BOOKMARK';
+export const REMOVE_BOOKMARK = 'REMOVE_BOOKMARK';
 
 export const RECEIVE_POST_ERRORS = 'RECEIVE_POST_ERRORS';
 export const CLEAR_POST_ERRORS = 'CLEAR_POST_ERRORS';
@@ -44,6 +47,16 @@ const receiveLike = like => ({
 const removeLike = like => ({
   type: REMOVE_LIKE,
   like
+});
+
+const receiveBookmark = bookmark => ({
+  type: RECEIVE_BOOKMARK,
+  bookmark
+});
+
+const removeBookmark = bookmark => ({
+  type: REMOVE_BOOKMARK,
+  bookmark
 });
 
 
@@ -96,4 +109,14 @@ export const createLike = like => dispatch => (
 export const deleteLike = like => dispatch => (
   likeAPIUtil.deleteLike(like).then(
     like => dispatch(removeLike(like)))
+);
+
+export const createBookmark = bookmark => dispatch => (
+  bookmarkAPIUtil.createBookmark(bookmark).then(
+    bookmark => dispatch(receiveBookmark(bookmark)))
+);
+
+export const deleteBookmark = bookmark => dispatch => (
+  bookmarkAPIUtil.deleteBookmark(bookmark).then(
+    bookmark => dispatch(removeBookmark(bookmark)))
 );

@@ -23,6 +23,8 @@ class User < ApplicationRecord
   has_many :likes,
     foreign_key: :liker_id
 
+  has_many :bookmarks
+
   has_many :comments,
     foreign_key: :author_id
 

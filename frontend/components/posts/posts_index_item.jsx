@@ -31,13 +31,23 @@ class PostsIndexItem extends React.Component {
     if (!post.liked) {
       const like = {liker_id: currentUserId, likeable_id: post.id, likeable_type: "Post"};
       createLike(like);
-      post.liked = !post.liked
     } else {
       const like = post.myLike;
       deleteLike(like);
-      post.liked = !post.liked
     }
   }
+
+  handleBookmark() {
+    const { post, createBookmark, deleteBookmark, currentUserId } = this.props
+    if (!post.bookmarked) {
+      const bookmark = {user_id: currentUserId, post_id: post.id};
+      createBookmark(bookmark);
+    } else {
+      const bookmark = post.myBookmark
+      deleteBookmark(bookmark);
+    }
+  }
+
 
   handleComment(e) {
     const { currentUserId, createComment, post } = this.props
@@ -57,6 +67,19 @@ class PostsIndexItem extends React.Component {
     } else {
       return(
         <img src={window.heartURL} className="icon" alt="like" onClick={this.handleLike}/>
+      )
+    }
+  }
+
+  bookmarkButton() {
+    const { post } = this.props;
+    if (post.bookmarked) {
+      return(
+        <img src={window.bookmarkedURL} className="icon" alt="bookmarked" onClick={this.handleBookmark}/>
+      )
+    } else {
+      return(
+        <img src={window.bookmarkURL} className="icon" alt="bookmark" onClick={this.handleBookmark}/>
       )
     }
   }
@@ -85,9 +108,6 @@ class PostsIndexItem extends React.Component {
     if (window.confirm('Are you sure you wish to delete this post?')) deletePost(post.id);
   }
 
-  handleBookmark() {
-    console.log("Bookmarked!");
-  }
 
   handleCommentClick() {
     document.getElementById("add-comment").focus();
@@ -136,7 +156,7 @@ class PostsIndexItem extends React.Component {
               {this.likeButton()}
               <img src={window.commentURL} className="icon" alt="comment" onClick={this.handleCommentClick}/>
             </div>
-            <img src={window.bookmarkURL} className="icon" alt="bookmark" onClick={this.handleBookmark}/>
+            {this.bookmarkButton()}
           </div>
           <h3 id="bold" className="total-likes" onClick={this.navigateToLikes}>{post.likerIds.length} Likes</h3>
           <div className="post-comments">

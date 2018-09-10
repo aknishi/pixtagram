@@ -27,6 +27,8 @@ class Post < ApplicationRecord
     through: :likes,
     source: :liker
 
+  has_many :bookmarks
+
   def time_ago
     time_ago_in_words(self.created_at)
   end
@@ -43,5 +45,13 @@ class Post < ApplicationRecord
 
   def current_user_like(userId)
     likes.find_by(liker_id: userId)
+  end
+
+  def bookmarked_by?(userId)
+    bookmarks.exists?(user_id: userId)
+  end
+
+  def current_user_bookmark(userId)
+    bookmarks.find_by(user_id: userId)
   end
 end

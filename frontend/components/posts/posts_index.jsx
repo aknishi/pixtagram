@@ -22,7 +22,11 @@ class PostsIndex extends React.Component {
       createComment,
       deleteLike,
       deleteComment,
-      comments } = this.props;
+      comments,
+      createBookmark,
+      deleteBookmark
+      } = this.props;
+
     if (loading) { return <LoadingIcon />; }
     const postItems = posts.slice(0).reverse().map(post => (
         <PostsIndexItem
@@ -39,6 +43,8 @@ class PostsIndex extends React.Component {
           deleteComment={deleteComment}
           fetchPost={fetchPost}
           loading={loading}
+          createBookmark={createBookmark}
+          deleteBookmark={deleteBookmark}
           />
       ))
     return(

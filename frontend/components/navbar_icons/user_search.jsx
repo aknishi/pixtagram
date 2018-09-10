@@ -21,9 +21,7 @@ class UserSearch extends React.Component {
     this.setState({ results: []})
     const { users } = this.props
     this.setState({query: e.currentTarget.value})
-    console.log(this.state.query)
     const userResults = users.filter(user => user.username.includes(this.state.query));
-    console.log(userResults);
     this.setState({results: userResults})
   }
 

@@ -40,9 +40,6 @@ class UserShow extends React.Component {
   componentDidMount() {
     this.props.fetchUsers();
     this.props.fetchPosts();
-    if (this.props.user.followerIds) {
-      document.getElementById("focused").focus();
-    }
   }
 
   currentUserButtons() {
@@ -115,15 +112,6 @@ class UserShow extends React.Component {
                   <h3><b>{user.followingIds.length}</b> following</h3>
                 </div>
                 <div><h2>{user.name}</h2></div>
-              </div>
-            </div>
-            <div className="user-posts-container">
-              <div className="posts-navbar">
-                <ul>
-                  <li><Link to={`/users/${this.props.userId}`} className="posts-navbar-links" id="focused" >POSTS</Link></li>
-                  <li><Link to={`/users/${this.props.userId}/saved`}className="posts-navbar-links">SAVED</Link></li>
-                  <li><Link to={`/users/${this.props.userId}/tagged`}className="posts-navbar-links">TAGGED</Link></li>
-                </ul>
               </div>
             </div>
           </div>

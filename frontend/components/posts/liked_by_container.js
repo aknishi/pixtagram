@@ -12,7 +12,6 @@ const mapStateToProps = (state, { match }) => {
   const currentUserId = state.session.id;
   const post = state.entities.posts[match.params.postId];
   const likers = selectPostLikers(users, post);
-  console.log(likers);
   return({
     likers,
     currentUserId,

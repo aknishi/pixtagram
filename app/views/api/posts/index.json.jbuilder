@@ -6,5 +6,7 @@
     json.likerIds post.likers.pluck(:id)
     json.liked post.liked_by?(current_user.id)
     json.myLike post.current_user_like(current_user.id)
+    json.bookmarked post.bookmarked_by?(current_user.id)
+    json.myBookmark post.current_user_bookmark(current_user.id)
   end
 end

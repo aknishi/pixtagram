@@ -5,6 +5,8 @@ json.post do
   json.likerIds @post.likers.pluck(:id)
   json.liked @post.liked_by?(current_user.id)
   json.myLike @post.current_user_like(current_user.id)
+  json.bookmarked @post.bookmarked_by?(current_user.id)
+  json.myBookmark @post.current_user_bookmark(current_user.id)
   @post.comments.includes(:author).each do |comment|
     json.comments do
       json.set! comment.id do

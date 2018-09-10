@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { selectUser, selectPostsFromUser } from '../../reducers/selectors';
+import { selectUser, selectPostsFromUser, selectSavedPostsFromUser } from '../../reducers/selectors';
 import { fetchUser } from '../../actions/user_actions';
 import { fetchPosts } from '../../actions/post_actions';
 import { withRouter } from 'react-router-dom';
@@ -11,23 +11,23 @@ const mapStateToProps = (state, { match }) => {
   const user = selectUser(state.entities, userId)
   const currentUserId = state.session.id;
   const allPosts = state.entities.posts;
-  const userPosts = selectPostsFromUser(allPosts, userId);
-  const savedSelected = false;
-  const gridSelected = true;
-  const postsCssId = "selected-link";
-  const savedCssId = "not-selected";
-  const postsItemBorder = "selected-item";
-  const savedItemBorder = "none";
+  const userPosts = selectSavedPostsFromUser(allPosts, user);
+  const savedSelected = true;
+  const gridSelected = false;
+  const postsCssId = "not-selected";
+  const savedCssId = "selected-link";
+  const postsItemBorder = "none";
+  const savedItemBorder = "selected-item";
   const loading = state.ui.loading.indexLoading;
   return({
     user,
     userId,
     currentUserId,
     userPosts,
-    postsCssId,
-    savedCssId,
     savedSelected,
     gridSelected,
+    postsCssId,
+    savedCssId,
     postsItemBorder,
     savedItemBorder,
     loading
