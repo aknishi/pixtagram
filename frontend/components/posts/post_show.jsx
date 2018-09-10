@@ -1,26 +1,26 @@
 import React from 'react';
-import { withRouter } from "react-router-dom";
+import { withRouter, BrowserHistory } from "react-router-dom";
 import values from 'lodash/values';
 
 class PostShow extends React.Component {
   constructor(props){
     super(props)
-    this.navigateToUser = this.navigateToUser.bind(this);
+    this.goBackHistory = this.goBackHistory.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.commentList = this.commentList.bind(this);
     this.handleCommentClick = this.handleCommentClick.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.likeButton = this.likeButton.bind(this);
     this.handleComment = this.handleComment.bind(this);
+    this.handleBookmark = this.handleBookmark.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchPost(this.props.post.id);
   }
 
-  navigateToUser() {
-    const { user, post } = this.props
-    this.props.history.push(`/users/${user.id}/`);
+  goBackHistory() {
+    this.props.history.goBack();
   }
 
   handleDelete() {
@@ -54,6 +54,17 @@ class PostShow extends React.Component {
     }
   }
 
+  handleBookmark() {
+    const { post, createBookmark, deleteBookmark, currentUserId } = this.props
+    if (!post.bookmarked) {
+      const bookmark = {user_id: currentUserId, post_id: post.id};
+      createBookmark(bookmark);
+    } else {
+      const bookmark = post.myBookmark
+      deleteBookmark(bookmark);
+    }
+  }
+
   likeButton() {
     const { post } = this.props;
     if (post.liked) {
@@ -63,6 +74,19 @@ class PostShow extends React.Component {
     } else {
       return(
         <img src={window.heartURL} className="icon" alt="like" onClick={this.handleLike}/>
+      )
+    }
+  }
+
+  bookmarkButton() {
+    const { post } = this.props;
+    if (post.bookmarked) {
+      return(
+        <img src={window.bookmarkedURL} className="icon" alt="bookmarked" onClick={this.handleBookmark}/>
+      )
+    } else {
+      return(
+        <img src={window.bookmarkURL} className="icon" alt="bookmark" onClick={this.handleBookmark}/>
       )
     }
   }
@@ -104,7 +128,7 @@ class PostShow extends React.Component {
             </div>
             <img src={window.deleteIconURL}
               className="icon" alt="close"
-              onClick={this.navigateToUser}/>
+              onClick={this.goBackHistory}/>
           </div>
           <div className="post-detail-comments">
             <div className="post-comments">
@@ -126,7 +150,7 @@ class PostShow extends React.Component {
                   {this.likeButton()}
                   <img src={window.commentURL} className="icon" alt="comment" onClick={this.handleCommentClick}/>
                 </div>
-                <img src={window.bookmarkURL} className="icon" alt="bookmark" onClick={this.handleBookmark}/>
+                {this.bookmarkButton()}
               </div>
               <h3 id="bold" className="total-likes">{post.likerIds.length} Likes</h3>
               <h4 id="light-grey" className="post-time">{post.time_ago} ago</h4>

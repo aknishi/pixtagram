@@ -3,10 +3,16 @@ import { selectPost, selectUser } from '../../reducers/selectors';
 import {
   fetchPost,
   createLike,
-  deleteLike } from '../../actions/post_actions';
+  deleteLike,
+  createBookmark,
+  deleteBookmark
+  } from '../../actions/post_actions';
+
 import {
   createComment,
-  deleteComment } from '../../actions/comment_actions';
+  deleteComment
+  } from '../../actions/comment_actions';
+
 import values from 'lodash/values';
 import React from 'react';
 import PostShow from './post_show';
@@ -31,8 +37,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchPost: id => dispatch(fetchPost(id)),
   fetchUser: id => dispatch(fetchUser(id)),
   createLike: like => dispatch(createLike(like)),
+  createBookmark: bookmark => dispatch(createBookmark(bookmark)),
   createComment: comment => dispatch(createComment(comment)),
   deleteLike: like => dispatch(deleteLike(like)),
+  deleteBookmark: bookmark => dispatch(deleteBookmark(bookmark)),
   deleteComment: comment => dispatch(deleteComment(comment))
 });
 
