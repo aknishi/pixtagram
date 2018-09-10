@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, withRouter, Route, Switch } from 'react-router-dom';
 import PostGridContainer from '../posts/post_grid_container';
 import UnfollowWindow from './unfollow_window';
+import LoadingIcon from '../posts/loading_icon';
 
 class UserShow extends React.Component {
   constructor(props) {
@@ -37,9 +38,11 @@ class UserShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUser(this.props.match.params.userId)
+    this.props.fetchUsers();
     this.props.fetchPosts();
-    document.getElementById("focused").focus();
+    if (this.props.user.followerIds) {
+      document.getElementById("focused").focus();
+    }
   }
 
   currentUserButtons() {
@@ -87,41 +90,46 @@ class UserShow extends React.Component {
   }
 
   render() {
-    const { user, userPosts, deleteFollow} = this.props
-    return(
-      <div className="user-profile-container">
-        <div className="user-info-container">
-          <div className="profile-pic-container">
-            <div className="profile-pic">
-              <img id="profile-pic" src={window.defaultProfilePicURL}/>
+    const { user, userPosts, deleteFollow, loading} = this.props;
+    if (loading) { return <LoadingIcon />; }
+    else {
+      if (user.followerIds) {
+        return(
+          <div className="user-profile-container">
+            <div className="user-info-container">
+              <div className="profile-pic-container">
+                <div className="profile-pic">
+                  <img id="profile-pic" src={window.defaultProfilePicURL}/>
+                </div>
+              </div>
+              <div className="user-info">
+                <div className="username">
+                  <h2>{user.username}</h2>
+                  { this.currentUserButtons()}
+                  { this.followButtons()}
+                  <UnfollowWindow deleteFollow={deleteFollow} user={user} />
+                </div>
+                <div className="user-stats">
+                  <h3><b>{userPosts.length}</b> posts</h3>
+                  <h3><b>{user.followerIds.length}</b> followers</h3>
+                  <h3><b>{user.followingIds.length}</b> following</h3>
+                </div>
+                <div><h2>{user.name}</h2></div>
+              </div>
+            </div>
+            <div className="user-posts-container">
+              <div className="posts-navbar">
+                <ul>
+                  <li><Link to={`/users/${this.props.userId}`} className="posts-navbar-links" id="focused" >POSTS</Link></li>
+                  <li><Link to={`/users/${this.props.userId}/saved`}className="posts-navbar-links">SAVED</Link></li>
+                  <li><Link to={`/users/${this.props.userId}/tagged`}className="posts-navbar-links">TAGGED</Link></li>
+                </ul>
+              </div>
             </div>
           </div>
-          <div className="user-info">
-            <div className="username">
-              <h2>{user.username}</h2>
-              { this.currentUserButtons()}
-              { this.followButtons()}
-              <UnfollowWindow deleteFollow={deleteFollow} user={user} />
-            </div>
-            <div className="user-stats">
-              <h3><b>{userPosts.length}</b> posts</h3>
-              <h3><b>{user.followerIds.length}</b> followers</h3>
-              <h3><b>{user.followingIds.length}</b> following</h3>
-            </div>
-            <div><h2>{user.name}</h2></div>
-          </div>
-        </div>
-        <div className="user-posts-container">
-          <div className="posts-navbar">
-            <ul>
-              <li><Link to={`/users/${this.props.userId}`} className="posts-navbar-links" id="focused" >POSTS</Link></li>
-              <li><Link to={`/users/${this.props.userId}/saved`}className="posts-navbar-links">SAVED</Link></li>
-              <li><Link to={`/users/${this.props.userId}/tagged`}className="posts-navbar-links">TAGGED</Link></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    )
+        )
+      } else { return <div></div> }
+    }
   }
 }
 

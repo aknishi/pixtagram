@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectUser, selectPostsFromUser } from '../../reducers/selectors';
-import { fetchUser, createFollow, deleteFollow } from '../../actions/user_actions';
+import { fetchUsers, createFollow, deleteFollow } from '../../actions/user_actions';
 import { fetchPosts } from '../../actions/post_actions';
 import { logout } from '../../actions/session_actions';
 import React from 'react';
@@ -13,17 +13,19 @@ const mapStateToProps = (state, { match }) => {
   const currentUserId = state.session.id;
   const allPosts = state.entities.posts;
   const userPosts = selectPostsFromUser(allPosts, userId);
+  const loading = state.ui.loading.indexLoading;
   return({
     userId,
     user,
     currentUserId,
-    userPosts
+    userPosts,
+    loading
   });
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchPosts: () => dispatch(fetchPosts()),
-  fetchUser: id => dispatch(fetchUser(id)),
+  fetchUsers: () => dispatch(fetchUsers()),
   logout: () => dispatch(logout()),
   createFollow: follow => dispatch(createFollow(follow)),
   deleteFollow: follow => dispatch(deleteFollow(follow))
