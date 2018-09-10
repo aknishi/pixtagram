@@ -13,6 +13,7 @@ class PostsIndexItem extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.likeButton = this.likeButton.bind(this);
     this.handleComment = this.handleComment.bind(this);
+    this.handleCommentClick = this.handleCommentClick.bind(this);
     this.commentList = this.commentList.bind(this);
   }
 
@@ -110,7 +111,8 @@ class PostsIndexItem extends React.Component {
 
 
   handleCommentClick() {
-    document.getElementById("add-comment").focus();
+    const { post } = this.props;
+    document.getElementById(`add-comment-${post.id}`).focus();
   }
 
   deleteButton() {
@@ -173,7 +175,7 @@ class PostsIndexItem extends React.Component {
           </div>
           <input
             type="text"
-            id="add-comment"
+            id={`add-comment-${post.id}`}
             className="add-commment"
             placeholder="Add a comment..."
             onKeyDown={this.handleComment}
