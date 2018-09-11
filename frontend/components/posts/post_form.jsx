@@ -30,8 +30,9 @@ class PostForm extends React.Component {
     }
   }
 
-  redirectToPostIndex(){
-    this.props.history.push("/posts/")
+  redirectToProfile(){
+    const { currentUserId } = this.props
+    this.props.history.push(`/users/${currentUserId}`)
   }
 
   handleSubmit(e) {
@@ -42,7 +43,7 @@ class PostForm extends React.Component {
     formData.append('post[location]', this.state.location);
     formData.append('post[photo]', this.state.photoFile);
     formData.append('post[user_id]', currentUserId);
-    createPost(formData).then(setTimeout(() => {this.redirectToPostIndex()}, 2000));
+    createPost(formData).then(setTimeout(() => {this.redirectToProfile()}, 2500));
   }
 
   errors() {
