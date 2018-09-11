@@ -30,8 +30,9 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/users/accounts/:userId/edit" component={UserEditFormContainer} />
       <ProtectedRoute exact path="/posts/:postId/liked_by" component={LikedByContainer} />
+      <ProtectedRoute exact path="/users/posts/:postId/liked_by" component={LikedByContainer} />
       <ProtectedRoute path="/posts" component={PostsIndexContainer} />
-      <ProtectedRoute exact path="/users/posts/:postId" component={PostShowContainer} />
+      <ProtectedRoute path="/users/posts/:postId" component={PostShowContainer} />
       <ProtectedRoute exact path="/users/:userId" component={UserShowContainer} />
       <ProtectedRoute exact path="/users/:userId/saved" component={UserShowContainer} />
       <ProtectedRoute exact path="/users/:userId/tagged" component={UserShowContainer} />

@@ -15,6 +15,7 @@ class PostShow extends React.Component {
     this.handleBookmark = this.handleBookmark.bind(this);
     this.showOptionsWindow = this.showOptionsWindow.bind(this);
     this.moreOptionsButton = this.moreOptionsButton.bind(this);
+    this.navigateToLikes = this.navigateToLikes.bind(this);
   }
 
   componentDidMount() {
@@ -36,6 +37,11 @@ class PostShow extends React.Component {
 
   handleCommentClick() {
     document.getElementById("add-comment").focus();
+  }
+
+  navigateToLikes() {
+    const { post } = this.props
+    this.props.history.push(`/users/posts/${post.id}/liked_by`);
   }
 
   handleLike() {
@@ -170,7 +176,7 @@ class PostShow extends React.Component {
                   {this.bookmarkButton()}
                 </div>
               </div>
-              <h3 id="bold" className="total-likes">{post.likerIds.length} Likes</h3>
+              <h3 id="bold" className="total-likes" onClick={this.navigateToLikes}>{post.likerIds.length} Likes</h3>
               <h4 id="light-grey" className="post-time">{post.time_ago} ago</h4>
               <input
                 type="text"

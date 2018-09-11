@@ -1,8 +1,12 @@
 class Api::FollowsController < ApplicationController
 
   def create
-    @follow = Follow.create(follow_params)
-    render json: @follow
+    @follow = Follow.new(follow_params)
+    if @follow.save
+      render json: @follow
+    else
+      render json: @follow.errors.full_messages, status: 422
+    end
   end
 
   def show
@@ -11,6 +15,7 @@ class Api::FollowsController < ApplicationController
 
   def destroy
     @follow = Follow.find(params[:id])
+    @follow.destroy
     render :show
   end
 

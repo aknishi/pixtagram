@@ -2,18 +2,54 @@ import React from 'react'
 import { withRouter, Link } from 'react-router-dom';
 
 class LikedBy extends React.Component {
-  componentDidMount() {
-    this.props.fetchUsers();
-    this.props.fetchPosts();
-    this.props.fetchComments();
-  }
 
   navigateToPosts() {
     this.props.history.push('/posts/');
   }
 
+  goBackHistory() {
+    this.props.history.goBack();
+  }
+
+  handleUnfollow(liker) {
+    const { deleteFollow } = this.props;
+    const follow = liker.myFollow;
+    deleteFollow(follow);
+  }
+
+  handleFollow(liker) {
+    const { currentUserId, createFollow } = this.props;
+    const follow = { follower_id: currentUserId, followee_id: liker.id }
+    createFollow(follow);
+  }
+
+  followButtons(liker) {
+    const { currentUserId } = this.props
+    if (currentUserId != liker.id) {
+      if (liker.followerIds.includes(currentUserId)) {
+        return(
+          <div>
+            <button
+              onClick={this.handleUnfollow.bind(this, liker)}
+              className="edit-button">
+              Unfollow</button>
+          </div>
+        )
+      } else {
+        return(
+          <div>
+            <button
+              onClick={this.handleFollow.bind(this, liker)}
+              className="button" id="follow-button">
+              Follow</button>
+          </div>
+        )
+      }
+    }
+  }
+
   render() {
-    const { likers } = this.props;
+    const { likers, createFollow, deleteFollow, currentUserId } = this.props;
     const likerItems = likers.map(liker => (
         <li key={liker.id} className="liker-item">
           <Link to={`/users/${liker.id}/`} className="likers-link">
@@ -23,6 +59,7 @@ class LikedBy extends React.Component {
               <h2 className="liker-name">{liker.name}</h2>
             </div>
           </Link>
+          {this.followButtons(liker)}
         </li>
     ));
     return(
@@ -33,7 +70,7 @@ class LikedBy extends React.Component {
               <h2>Likes</h2>
               <img src={window.deleteIconURL}
                 className="close-icon" alt="close"
-                onClick={this.navigateToPosts.bind(this)}/>
+                onClick={this.goBackHistory.bind(this)}/>
             </div>
             <ul className="likers-list">
               { likerItems }

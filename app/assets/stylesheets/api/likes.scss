@@ -106,6 +106,8 @@
 }
 
 .likers-list {
+  box-sizing: border-box;
+  width: 400px;
   display: flex;
   flex-direction: column;
   padding: 10px 20px 20px 20px;
@@ -117,7 +119,10 @@
 }
 
 .liker-item {
+  width: 100%;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .liker-username{
