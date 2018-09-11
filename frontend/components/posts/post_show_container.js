@@ -5,7 +5,8 @@ import {
   createLike,
   deleteLike,
   createBookmark,
-  deleteBookmark
+  deleteBookmark,
+  deletePost
   } from '../../actions/post_actions';
 
 import {
@@ -41,7 +42,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   createComment: comment => dispatch(createComment(comment)),
   deleteLike: like => dispatch(deleteLike(like)),
   deleteBookmark: bookmark => dispatch(deleteBookmark(bookmark)),
-  deleteComment: comment => dispatch(deleteComment(comment))
+  deleteComment: comment => dispatch(deleteComment(comment)),
+  deletePost: post => dispatch(deletePost(post))
 });
 
 export default connect(

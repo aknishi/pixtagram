@@ -129,7 +129,7 @@
   background-color: white;
   font-size: 14px;
   border: none;
-  padding: 16px 26px 16px 0px;
+  padding: 16px 0px 16px 0px;
 }
 
 .total-likes {
@@ -315,6 +315,44 @@
   input {
     border-top: 1px solid $light-grey;
     width: 95%;
+  }
+}
+
+//More Options window
+.options-window-container {
+  width: 250px;
+  height: 180px;
+  border-radius: 12px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -90px;
+  margin-left: -125px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  z-index: 5;
+
+  h2 {
+    font-size: 16px;
+    height: 60px;
+    text-align: center;
+  }
+
+  button {
+    width: 100%;
+    background-color: white;
+    height: 50px;
+    border-top: 1px solid $light-grey;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    font-size: 16px;
+    padding: 2px;
   }
 }
 

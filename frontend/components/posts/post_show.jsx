@@ -1,18 +1,20 @@
 import React from 'react';
 import { withRouter, BrowserHistory } from "react-router-dom";
 import values from 'lodash/values';
+import OptionsWindow from './options_window';
 
 class PostShow extends React.Component {
   constructor(props){
     super(props)
     this.goBackHistory = this.goBackHistory.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
     this.commentList = this.commentList.bind(this);
     this.handleCommentClick = this.handleCommentClick.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.likeButton = this.likeButton.bind(this);
     this.handleComment = this.handleComment.bind(this);
     this.handleBookmark = this.handleBookmark.bind(this);
+    this.showOptionsWindow = this.showOptionsWindow.bind(this);
+    this.moreOptionsButton = this.moreOptionsButton.bind(this);
   }
 
   componentDidMount() {
@@ -23,9 +25,13 @@ class PostShow extends React.Component {
     this.props.history.goBack();
   }
 
-  handleDelete() {
-    const { post, deletePost } = this.props;
-    if (window.confirm('Are you sure you wish to delete this post?')) deletePost(post.id);
+  showOptionsWindow() {
+    $('#options-window').removeClass('hidden');
+    $(document).on('click', this.hideWindow);
+  }
+
+  hideWindow() {
+    $('#options-window').addClass('hidden');
   }
 
   handleCommentClick() {
@@ -91,6 +97,15 @@ class PostShow extends React.Component {
     }
   }
 
+  moreOptionsButton() {
+    const { currentUserId, user } = this.props;
+    if (currentUserId === user.id) {
+      return(
+        <img src={window.moreOptionsURL} className="icon" alt="more-options" onClick={this.showOptionsWindow}/>
+      )
+    }
+  }
+
   commentList() {
     const { post, comments, users } = this.props
     if ( post.commentIds.length > 0 ) {
@@ -111,7 +126,7 @@ class PostShow extends React.Component {
   }
 
   render() {
-    const { post, user } = this.props;
+    const { post, user, deletePost } = this.props;
     return(
       <div className="post-detail-container">
         <div className="post-detail-photo">
@@ -150,7 +165,10 @@ class PostShow extends React.Component {
                   {this.likeButton()}
                   <img src={window.commentURL} className="icon" alt="comment" onClick={this.handleCommentClick}/>
                 </div>
-                {this.bookmarkButton()}
+                <div>
+                  {this.moreOptionsButton()}
+                  {this.bookmarkButton()}
+                </div>
               </div>
               <h3 id="bold" className="total-likes">{post.likerIds.length} Likes</h3>
               <h4 id="light-grey" className="post-time">{post.time_ago} ago</h4>
@@ -161,6 +179,7 @@ class PostShow extends React.Component {
                 placeholder="Add a comment..."
                 onKeyDown={this.handleComment}
                 />
+              <OptionsWindow deletePost={deletePost} post={post} user={user}/>
             </div>
           </div>
         </div>
