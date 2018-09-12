@@ -1,6 +1,7 @@
 import * as APIUtil from '../util/post_api_util';
 import * as likeAPIUtil from '../util/like_api_util';
 import * as bookmarkAPIUtil from '../util/bookmark_api_util';
+import { fetchNotifications } from './session_actions';
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
@@ -72,14 +73,14 @@ export const clearErrors = () => ({
 export const fetchPosts = () => dispatch => {
   dispatch(startLoadingPosts());
   return APIUtil.fetchPosts()
-  .then(posts => { dispatch(receivePosts(posts))});
+  .then(posts => { dispatch(receivePosts(posts))})
+  .then(dispatch => fetchNotifications());
 }
 
 export const fetchPost = id => dispatch => {
   dispatch(startLoadingPost());
   return APIUtil.fetchPost(id)
   .then(post => { dispatch(receivePost(post));
-  return post;
   });
 }
 

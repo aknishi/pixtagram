@@ -6,6 +6,7 @@ export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const RECEIVE_NOTIFICATIONS = 'RECEIVE_NOTIFICATIONS';
+export const RECEIVE_NOTIFICATION = 'RECEIVE_NOTIFICATION';
 
 export const login = user => dispatch => (
   APIUtil.login(user).then(user => {
@@ -28,6 +29,14 @@ export const fetchNotifications = () => dispatch => (
     notifications => { dispatch(receiveNotifications(notifications))})
 )
 
+export const updateNotification = notification => dispatch => {
+  return(
+    notificationsAPIUtil.updateNotification(notification).then(notification => {
+      dispatch(receiveNotification(notification));
+    }).fail(err => dispatch(receiveErrors(err.responseJSON)))
+  )
+};
+
 const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
   currentUser
@@ -49,4 +58,9 @@ export const clearErrors = () => ({
 const receiveNotifications = notifications => ({
   type: RECEIVE_NOTIFICATIONS,
   notifications
+});
+
+const receiveNotification = notification => ({
+  type: RECEIVE_NOTIFICATION,
+  notification
 });

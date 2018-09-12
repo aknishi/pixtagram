@@ -4,6 +4,22 @@
 
 @import "variables";
 
+.notification-count {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 18px;
+  top: 20px;
+  background-color: red;
+  width: 22px;
+  height: 16px;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
 .notifications-dropdown {
  position: absolute;
  top: 30px;

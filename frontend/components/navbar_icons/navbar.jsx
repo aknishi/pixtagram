@@ -5,6 +5,7 @@ import NotificationsDropdownContainer from './notifications_dropdown_container';
 import UserSearch from './user_search';
 
 class NavBar extends React.Component {
+
   constructor(props){
     super(props)
     this.handleClick = this.handleClick.bind(this);
@@ -21,14 +22,50 @@ class NavBar extends React.Component {
     this.props.history.push(`/posts`);
   }
 
+  markedNotificationsAsRead() {
+    const { notifications } = this.props
+    console.log("notifications read");
+    const unreadNotifications = notifications.filter(notification => notification.read === false)
+    unreadNotifications.map(notif => {
+      const notification = Object.assign({}, notif)
+      notification.read = true
+      return (
+        this.props.updateNotification({notification})
+      )
+    })
+  }
+
   handleNotifications() {
     this.props.fetchNotifications();
     $('#notifications-dropdown').removeClass('hidden');
-    $(document).on('click', this.hideDropdown);
+    $(document).on('click', this.hideDropdown)
+    this.markedNotificationsAsRead();
   }
 
   hideDropdown() {
     $('#notifications-dropdown').addClass('hidden');
+  }
+
+  unreadNotifications(){
+    const { notifications } = this.props;
+    const unreadNotifications = notifications.filter(notification => notification.read === false)
+    const count = unreadNotifications.length;
+    if (count > 0) {
+      return(this.displayNotificationCount(count));
+    }
+  }
+
+  displayNotificationCount(count) {
+    if (count < 10) {
+      var stringCount= `0${count}`;
+    } else {
+      var stringCount= `${count}`;
+    }
+    return(
+      <div className="notification-count">
+        <h4>{stringCount}</h4>
+      </div>
+    )
   }
 
   navBarIcons() {
@@ -42,7 +79,10 @@ class NavBar extends React.Component {
             </Link>
           </li>
           <li id="notifications-dropdown-btn" className="heart-button">
-            <img src={window.heartURL} className="icon" alt="heart" onClick={this.handleNotifications}/>
+            <div onClick={this.handleNotifications}>
+              <img src={window.heartURL} className="icon" alt="heart"/>
+              {this.unreadNotifications()}
+            </div>
             <NotificationsDropdownContainer/>
           </li>
           <li>

@@ -8,7 +8,8 @@ class UserSearch extends React.Component {
       query: '',
       results: []
     }
-    this.handleInput = this.handleInput.bind(this)
+    this.handleInput = this.handleInput.bind(this);
+    this.profilePhoto = this.profilePhoto.bind(this);
   }
 
   hideResults() {
@@ -25,11 +26,23 @@ class UserSearch extends React.Component {
     this.setState({results: userResults})
   }
 
+  profilePhoto(user) {
+    if (user.profilePhotoUrl !== "/api/users") {
+      return(
+        <img className="tiny-profile-pic" src={user.profilePhotoUrl}/>
+      )
+    } else {
+      return(
+        <img className="tiny-profile-pic" src={window.defaultProfilePicURL}/>
+      )
+    }
+  }
+
   renderResults() {
     const userItems = this.state.results.map(user => (
       <li key={user.id} className="search-result-item">
         <Link to={`/users/${user.id}/`} className="user-link">
-          <img className="tiny-profile-pic" src={window.defaultProfilePicURL}/>
+          {this.profilePhoto(user)}
           <div>
             <h2 className="search-username" id="bold">{user.username}</h2>
             <h2 className="search-name">{user.name}</h2>
@@ -44,6 +57,7 @@ class UserSearch extends React.Component {
       </ul>
     )
   }
+
   render() {
     return(
     <div className="search-container">
