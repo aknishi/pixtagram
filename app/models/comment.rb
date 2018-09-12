@@ -14,6 +14,8 @@
 class Comment < ApplicationRecord
   include Likeable
 
+  after_create :create_notification
+
   validates :body, presence: true
 
   belongs_to :post
@@ -26,4 +28,12 @@ class Comment < ApplicationRecord
   def liked_by?(user)
     likes.exists?(liker_id: user.id)
   end
+
+  private
+
+  def create_notification
+    post = Post.find(self.post_id)
+    Notification.create(creator_id: self.author_id, receiver_id: post.user_id, post_id: self.post_id, notification_type: "comment")
+  end
+
 end

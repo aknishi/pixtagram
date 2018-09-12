@@ -11,8 +11,18 @@
 #
 
 class Like < ApplicationRecord
+  after_create :create_notification
+
   validates :likeable_id, uniqueness: { scope: :liker_id}
 
   belongs_to :liker, class_name: :User
   belongs_to :likeable, polymorphic: true
+
+  private
+
+  def create_notification
+    post = Post.find(self.likeable_id)
+    Notification.create(creator_id: self.liker_id, receiver_id: post.user_id, post_id: self.likeable_id, notification_type: "like")
+  end
+  
 end

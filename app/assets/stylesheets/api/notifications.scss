@@ -1,0 +1,70 @@
+// Place all the styles related to the api/notifications controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables";
+
+.notifications-dropdown {
+ position: absolute;
+ top: 30px;
+ right: 0;
+ background-color: #fff;
+ border: 1px solid $light-grey;
+ border-radius: 3px;
+ padding: 10px;
+ width: 400px;
+ max-height: 350px;
+ overflow: scroll;
+ z-index: 1;
+ color: $grey;
+ text-align: left;
+ box-shadow: -1px 4px 6px 1px rgba(0,0,0,0.09);
+ font-weight: initial;
+
+ :last-child {
+   border-bottom: none;
+ }
+}
+
+.heart-button {
+ position: relative;
+ z-index: 5;
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 3px;
+  border-bottom: 1px solid $mid-grey;
+}
+
+.notification-body {
+  display: flex;
+  align-items: center;
+  color: black;
+
+  h4{
+    font-size: 14px;
+  }
+}
+
+.notification-photo {
+  width: 38px;
+  height: 38px;
+}
+
+h4.time-ago {
+  padding-left: 10px;
+  color: $mid-grey;
+  font-size: 11px;
+}
+#no-notifications {
+  color: black;
+  display: flex;
+  justify-content: center;
+  h4 {
+    font-size: 16px;
+  }
+}

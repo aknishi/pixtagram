@@ -22,6 +22,7 @@ class NavBar extends React.Component {
   }
 
   handleNotifications() {
+    this.props.fetchNotifications();
     $('#notifications-dropdown').removeClass('hidden');
     $(document).on('click', this.hideDropdown);
   }

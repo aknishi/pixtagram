@@ -5,6 +5,7 @@ import Root from './components/root';
 import { deleteFollow, updateUser } from './actions/user_actions';
 import { fetchPost, deletePost } from './actions/post_actions';
 import { fetchComments } from './actions/comment_actions';
+import { fetchNotifications } from './actions/session_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       store = configureStore();
     }
-  window.deleteFollow = deleteFollow;
+  window.fetchNotifications = fetchNotifications;
   window.dispatch = store.dispatch;
   window.getState = store.getState;
   window.deletePost = deletePost;

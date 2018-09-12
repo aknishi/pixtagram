@@ -28,6 +28,10 @@ class User < ApplicationRecord
   has_many :comments,
     foreign_key: :author_id
 
+  has_many :notifications,
+    foreign_key: :receiver_id,
+    dependent: :destroy
+
   has_one_attached :profile_photo
 
   has_many :in_follows,

@@ -21,13 +21,15 @@ class Post < ApplicationRecord
   belongs_to :user
 
   has_many :comments,
-    foreign_key: :post_id
+    foreign_key: :post_id,
+    dependent: :destroy
 
   has_many :likers,
     through: :likes,
     source: :liker
 
-  has_many :bookmarks
+  has_many :bookmarks,
+    dependent: :destroy
 
   def time_ago
     time_ago_in_words(self.created_at)
