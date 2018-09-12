@@ -7,7 +7,7 @@ class NotificationsDropdown extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchNotifications();
+
   }
 
   profilePhoto(user) {

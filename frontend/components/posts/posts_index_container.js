@@ -14,6 +14,7 @@ import {
   fetchComments } from '../../actions/comment_actions';
 
 import { fetchUsers } from '../../actions/user_actions';
+import { fetchNotifications } from '../../actions/session_actions';
 
 import PostsIndex from './posts_index';
 import values from 'lodash/values';
@@ -44,7 +45,8 @@ const mapDispatchToProps = dispatch => ({
   createComment: comment => dispatch(createComment(comment)),
   deleteLike: like => dispatch(deleteLike(like)),
   deleteBookmark: bookmark => dispatch(deleteBookmark(bookmark)),
-  deleteComment: comment => dispatch(deleteComment(comment))
+  deleteComment: comment => dispatch(deleteComment(comment)),
+  fetchNotifications: () => dispatch(fetchNotifications())
 
 })
 
