@@ -20,8 +20,9 @@ class NotificationsDropdown extends React.Component {
 
   render() {
     const { notifications, users, posts, currentUser } = this.props
-    if (Object.keys(posts).length !== 0) {
-      var notificationItems = notifications.slice(0).reverse().map(
+    let notificationItems = [];
+    if (Object.keys(posts).length !== 0 && notifications.length !== 0) {
+      notificationItems = notifications.slice(0).reverse().map(
         notification => {
           switch(notification.notification_type) {
             case "comment":
@@ -69,13 +70,14 @@ class NotificationsDropdown extends React.Component {
             )
           }
         })
-      if (notificationItems.length === 0){
-        notificationItems.push(
-          <li key="none" id="no-notifications" className="notification-item">
-            <h4>You have no notifications</h4>
-          </li>)
       }
-    }
+    if (notificationItems.length === 0){
+      notificationItems.push(
+        <li key="none" id="no-notifications" className="notification-item">
+          <h4>You have no notifications</h4>
+        </li>)
+      }
+
     if (Object.keys(posts).length !== 0) {
       return(
         <ul id="notifications-dropdown" className="notifications-dropdown hidden">

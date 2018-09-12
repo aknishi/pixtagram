@@ -22,6 +22,7 @@ class NavBar extends React.Component {
     this.props.history.push(`/posts`);
   }
 
+
   markedNotificationsAsRead() {
     const { notifications } = this.props
     const unreadNotifications = notifications.filter(notification => notification.read === false)
