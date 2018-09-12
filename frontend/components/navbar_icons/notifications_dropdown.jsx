@@ -1,6 +1,23 @@
 import React from 'react';
 
 class NotificationsDropdown extends React.Component {
+  constructor(props){
+    super(props);
+    this.profilePhoto = this.profilePhoto.bind(this);
+  }
+
+  profilePhoto(user) {
+    if (user.profilePhotoUrl !== "/api/users") {
+      return(
+        <img className="tiny-profile-pic" src={user.profilePhotoUrl}/>
+      )
+    } else {
+      return(
+        <img className="tiny-profile-pic" src={window.defaultProfilePicURL}/>
+      )
+    }
+  }
+
   render() {
     const { notifications, users, posts, currentUser } = this.props
     const items = notifications.filter(notification => notification.creator_id !== currentUser.id );
@@ -11,7 +28,7 @@ class NotificationsDropdown extends React.Component {
           return(
             <li key={notification.id} className="notification-item">
               <div className="notification-body">
-                <img className="tiny-profile-pic" src={window.defaultProfilePicURL}/>
+                { this.profilePhoto(users[notification.creator_id]) }
                 <h4><b>{users[notification.creator_id].username}</b> commented on your photo</h4>
                 <h4 className="time-ago">{notification.time_ago} ago</h4>
               </div>
@@ -22,7 +39,7 @@ class NotificationsDropdown extends React.Component {
           return(
             <li key={notification.id} className="notification-item">
               <div className="notification-body">
-                <img className="tiny-profile-pic" src={window.defaultProfilePicURL}/>
+                { this.profilePhoto(users[notification.creator_id]) }
                 <h4><b>{users[notification.creator_id].username}</b> liked your photo</h4>
                 <h4 className="time-ago">{notification.time_ago} ago</h4>
               </div>
@@ -33,7 +50,7 @@ class NotificationsDropdown extends React.Component {
           return(
             <li key={notification.id} className="notification-item">
               <div className="notification-body">
-                <img className="tiny-profile-pic" src={window.defaultProfilePicURL}/>
+                { this.profilePhoto(users[notification.creator_id]) }
                 <h4><b>{users[notification.creator_id].username}</b> bookmarked your photo</h4>
                 <h4 className="time-ago">{notification.time_ago} ago</h4>
               </div>
@@ -44,7 +61,7 @@ class NotificationsDropdown extends React.Component {
           return(
             <li key={notification.id} className="notification-item">
               <div className="notification-body">
-                <img className="tiny-profile-pic" src={window.defaultProfilePicURL}/>
+                { this.profilePhoto(users[notification.creator_id]) }
                 <h4><b>{users[notification.creator_id].username}</b> started following you</h4>
                 <h4 className="time-ago">{notification.time_ago} ago</h4>
               </div>

@@ -48,12 +48,24 @@ class LikedBy extends React.Component {
     }
   }
 
+  profilePhoto(liker) {
+    if (liker.profilePhotoUrl !== "/api/users") {
+      return(
+        <img className="tiny-profile-pic" src={liker.profilePhotoUrl}/>
+      )
+    } else {
+      return(
+        <img className="tiny-profile-pic" src={window.defaultProfilePicURL}/>
+      )
+    }
+  }
+
   render() {
     const { likers, createFollow, deleteFollow, currentUserId } = this.props;
     const likerItems = likers.map(liker => (
         <li key={liker.id} className="liker-item">
           <Link to={`/users/${liker.id}/`} className="likers-link">
-            <img className="tiny-profile-pic" src={window.defaultProfilePicURL}/>
+            { this.profilePhoto(liker) }
             <div>
               <h2 className="liker-username" id="bold">{liker.username}</h2>
               <h2 className="liker-name">{liker.name}</h2>

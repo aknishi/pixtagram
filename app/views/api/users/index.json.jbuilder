@@ -1,6 +1,7 @@
 @users.each do |user|
   json.set! user.id do
     json.partial! "api/users/user", user: user
+    json.profilePhotoUrl url_for(user.profile_pic)
     json.postIds []
     json.followerIds user.followers.pluck(:id)
     json.followingIds user.followees.pluck(:id)

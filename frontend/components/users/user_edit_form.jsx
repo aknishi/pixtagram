@@ -4,10 +4,20 @@ import { withRouter, Redirect } from 'react-router-dom';
 class UserEditForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = this.props.user;
+    this.state = {
+      name: this.props.user.name,
+      username: this.props.user.username,
+      email: this.props.user.email,
+      password: "",
+      photoFile: null,
+      photoUrl: null
+     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkPermission = this.checkPermission.bind(this);
+    this.handleFile = this.handleFile.bind(this);
+    this.profilePhoto = this.profilePhoto.bind(this);
   }
+
   componentWillUnmount() {
     this.props.clearErrors();
   }
@@ -22,11 +32,39 @@ class UserEditForm extends React.Component {
     }
   }
 
+  handleFile(e) {
+    const file = e.currentTarget.files[0]
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({ photoFile: file, photoUrl: fileReader.result });
+    };
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+  }
+
+  preview() {
+    if (this.state.photoUrl) {
+      return(
+        <div className="img-preview-container">
+          <h3 className="preview-text"> Image Preview </h3>
+          <img src={this.state.photoUrl} className="img-preview-upload"/>
+        </div>
+    )}
+  }
+
   handleSubmit(e) {
     e.preventDefault()
-    const user = Object.assign({}, this.state)
-    this.props.updateUser(user)
-    .then(() => this.props.history.push(`/users/${user.id}`));
+    const { user } = this.props;
+    const userId = user.id
+    const formData = new FormData();
+    formData.append('user[name]', this.state.name);
+    formData.append('user[username]', this.state.username);
+    formData.append('user[email]', this.state.email);
+    formData.append('user[password]', this.state.password);
+    formData.append('user[profile_photo]', this.state.photoFile);
+    this.props.updateUser({ formData, userId }).then(
+      () => this.props.history.push(`/users/${user.id}`));
   }
 
   errors() {
@@ -48,7 +86,7 @@ class UserEditForm extends React.Component {
           <input
             type="password"
             value={this.state.password}
-            placeholder="******"
+            placeholder="Enter Password"
             onChange={this.update('password')}
             />
         </div>
@@ -86,6 +124,19 @@ class UserEditForm extends React.Component {
     }
   }
 
+  profilePhoto() {
+    const { user } = this.props
+    if (user.profilePhotoUrl !== "/api/users") {
+      return(
+        <img className="small-profile-pic" src={user.profilePhotoUrl}/>
+      )
+    } else {
+      return(
+        <img className="small-profile-pic" src={window.defaultProfilePicURL}/>
+      )
+    }
+  }
+
   render() {
     const { user } = this.props;
     this.checkPermission();
@@ -98,11 +149,25 @@ class UserEditForm extends React.Component {
           { this.guestUserEditErrorMessage() }
           <div className="edit-form">
             <div className="edit-row">
-              <aside>
-                <img className="small-profile-pic" src={window.defaultProfilePicURL}/>
+              <aside className="small-profile-photo-container">
+                {this.profilePhoto()}
               </aside>
               <h2 id="bold">{user.username}</h2>
             </div>
+            <div className="edit-row">
+              <div>
+                <aside className="profile-photo-upload-label">
+                  <label>Profile Photo:</label>
+                </aside>
+                <h3 id="not-bold">(Use a square photo for better quality)</h3>
+              </div>
+              <input
+                type="file"
+                className="file-input"
+                onChange={this.handleFile}
+                />
+            </div>
+            { this.preview() }
             <div className="edit-row">
               <aside>
                 <label>Name:</label>

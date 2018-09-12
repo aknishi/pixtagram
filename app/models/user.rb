@@ -98,4 +98,13 @@ class User < ApplicationRecord
       nil
     end
   end
+
+  def profile_pic
+    if self.profile_photo.attached?
+      return self.profile_photo
+    else
+      return nil
+    end
+  end
+
 end

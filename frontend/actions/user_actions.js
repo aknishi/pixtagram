@@ -49,11 +49,15 @@ export const fetchUser = id => dispatch => (
   ))
 );
 
-export const updateUser = user => dispatch => (
-  APIUtil.updateUser(user).then(user => {
-    dispatch(receiveUser(user));
-  }).fail(err => dispatch(receiveErrors(err.responseJSON)))
-);
+export const updateUser = ({ formData, userId }) => dispatch => {
+  console.log(formData);
+  console.log(userId);
+  return(
+    APIUtil.updateUser({ formData, userId }).then(user => {
+      dispatch(receiveUser(user));
+    }).fail(err => dispatch(receiveErrors(err.responseJSON)))
+  )
+};
 
 export const createFollow = follow => dispatch => (
   followAPIUtil.createFollow(follow).then(

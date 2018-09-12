@@ -15,6 +15,7 @@ class PostsIndexItem extends React.Component {
     this.handleComment = this.handleComment.bind(this);
     this.handleCommentClick = this.handleCommentClick.bind(this);
     this.commentList = this.commentList.bind(this);
+    this.profilePhoto = this.profilePhoto.bind(this);
   }
 
   navigateToUser() {
@@ -128,6 +129,19 @@ class PostsIndexItem extends React.Component {
     }
   }
 
+  profilePhoto() {
+    const { user } = this.props
+    if (user.profilePhotoUrl !== "/api/users") {
+      return(
+        <img className="small-profile-pic" src={user.profilePhotoUrl}/>
+      )
+    } else {
+      return(
+        <img className="small-profile-pic" src={window.defaultProfilePicURL}/>
+      )
+    }
+  }
+
   render() {
     const { post, user } = this.props;
 
@@ -135,7 +149,7 @@ class PostsIndexItem extends React.Component {
       <div className="post-index-container">
         <div className="post-header">
           <div className="post-author"onClick={this.navigateToUser}>
-            <img className="small-profile-pic" src={window.defaultProfilePicURL}/>
+            { this.profilePhoto() }
             <div className="post-header-title">
               <h2 className="post-username" id="bold">{user.username}</h2>
               <h4 className="post-location">{post.location}</h4>

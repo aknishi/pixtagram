@@ -12,6 +12,7 @@ class UserShow extends React.Component {
     this.handleFollow = this.handleFollow.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.profilePhoto = this.profilePhoto.bind(this);
   }
 
   handleEdit() {
@@ -86,6 +87,19 @@ class UserShow extends React.Component {
     }
   }
 
+  profilePhoto() {
+    const { user } = this.props
+    if (user.profilePhotoUrl !== "/api/users") {
+      return(
+        <img id="profile-pic" src={user.profilePhotoUrl}/>
+      )
+    } else {
+      return(
+        <img id="profile-pic" src={window.defaultProfilePicURL}/>
+      )
+    }
+  }
+
   render() {
     const { user, userPosts, deleteFollow, loading} = this.props;
     if (loading) { return <LoadingIcon />; }
@@ -96,7 +110,7 @@ class UserShow extends React.Component {
             <div className="user-info-container">
               <div className="profile-pic-container">
                 <div className="profile-pic">
-                  <img id="profile-pic" src={window.defaultProfilePicURL}/>
+                  {this.profilePhoto()}
                 </div>
               </div>
               <div className="user-info">
