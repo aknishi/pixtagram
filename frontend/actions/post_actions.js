@@ -79,9 +79,8 @@ export const fetchPosts = () => dispatch => {
 export const fetchPost = id => dispatch => {
   dispatch(startLoadingPost());
   return APIUtil.fetchPost(id)
-  .then(post => { dispatch(receivePost(post));
-  });
-}
+  .then(post => { dispatch(receivePost(post))})
+};
 
 export const createPost = post => dispatch => (
   APIUtil.createPost(post).then(

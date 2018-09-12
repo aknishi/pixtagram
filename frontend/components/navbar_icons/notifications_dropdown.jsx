@@ -6,10 +6,6 @@ class NotificationsDropdown extends React.Component {
     this.profilePhoto = this.profilePhoto.bind(this);
   }
 
-  componentDidMount() {
-
-  }
-
   profilePhoto(user) {
     if (user.profilePhotoUrl !== "/api/users") {
       return(

@@ -7,8 +7,7 @@ class PostsIndex extends React.Component {
   componentDidMount() {
     this.props.fetchUsers();
     this.props.fetchComments();
-    this.props.fetchPosts().then(
-      setTimeout(() => {dispatch(fetchNotifications())}, 3000));
+    this.props.fetchPosts().then(setTimeout(() => {dispatch(fetchNotifications())}, 70000));
   }
 
   render() {
