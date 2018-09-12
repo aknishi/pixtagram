@@ -11,7 +11,7 @@ class PostGrid extends React.Component {
 
   componentDidMount() {
     this.props.fetchUser(this.props.match.params.userId);
-    this.props.fetchPosts().then(setTimeout(() => {dispatch(fetchNotifications())}, 7000));
+    this.props.fetchPosts()
   }
 
   // create and empty object if num of posts is not multiple
