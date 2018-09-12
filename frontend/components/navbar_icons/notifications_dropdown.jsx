@@ -24,7 +24,6 @@ class NotificationsDropdown extends React.Component {
 
   render() {
     const { notifications, users, posts, currentUser } = this.props
-    console.log(Object.keys(posts).length !== 0)
     if (Object.keys(posts).length !== 0) {
       var notificationItems = notifications.slice(0).reverse().map(
         notification => {

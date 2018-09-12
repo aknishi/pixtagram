@@ -24,7 +24,6 @@ class NavBar extends React.Component {
 
   markedNotificationsAsRead() {
     const { notifications } = this.props
-    console.log("notifications read");
     const unreadNotifications = notifications.filter(notification => notification.read === false)
     unreadNotifications.map(notif => {
       const notification = Object.assign({}, notif)

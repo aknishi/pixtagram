@@ -74,7 +74,6 @@ export const fetchPosts = () => dispatch => {
   dispatch(startLoadingPosts());
   return APIUtil.fetchPosts()
   .then(posts => { dispatch(receivePosts(posts))})
-  .then(dispatch => fetchNotifications());
 }
 
 export const fetchPost = id => dispatch => {
