@@ -11,9 +11,11 @@ Pixtagram is a Rails backend - React/Redux frontend app clone of Instagram, a so
 + Users have a profile page where they can log out and see their own posts in a grid layout as well as the ones they have saved/bookmarked.
 + Users are able to like, comment and bookmark photos.
 + Users are also able to "follow" other users to always see their most recent posts.
++ Users get notifications when someone follows them or like, comment, or bookmark one of their photos.
++ An unread notification counter shows up at the top navigation bar.
 + Users can see the number of likes a post has, as well as who liked each photo by clicking on the number of likes.
 + There is a users search bar at the top that lets users find other users. It renders immediate results with each key input.
-+ React was used to allow easy navigation through the application.
++ React was used to allow easy navigation through the application by rendering only certain components when the state of the website changes.
 
 ## Login/Signup
 ![Sign/Up](https://github.com/aknishi/pixtagram/blob/master/app/assets/images/01-login.png)
