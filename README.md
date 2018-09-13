@@ -18,7 +18,7 @@ Pixtagram is a Rails backend - React/Redux frontend app clone of Instagram, a so
 ## Login/Signup
 ![Sign/Up](https://github.com/aknishi/pixtagram/blob/master/app/assets/images/01-login.png)
 
-## Profile/Page
+## Profile/Page with Unread Notification Count
 ![Profile_Page](https://github.com/aknishi/pixtagram/blob/master/app/assets/images/02-profile_page.png)
 
 ## Post Feed and Search Bar
@@ -27,7 +27,7 @@ Pixtagram is a Rails backend - React/Redux frontend app clone of Instagram, a so
 ## Upload
 ![Upload](https://github.com/aknishi/pixtagram/blob/master/app/assets/images/04-upload.png)
 
-## Post Grid
+## Post Grid and Notifications Dropdown
 ![Post Grid](https://github.com/aknishi/pixtagram/blob/master/app/assets/images/05-post-grid.png)
 
 ## Post Show
@@ -35,3 +35,8 @@ Pixtagram is a Rails backend - React/Redux frontend app clone of Instagram, a so
 
 ## Liked By
 ![Liked By](https://github.com/aknishi/pixtagram/blob/master/app/assets/images/08-liked_by.png)
+
+## Profile Page Edit and Profile Photo Upload
+![Liked By](https://github.com/aknishi/pixtagram/blob/master/app/assets/images/03-profile_update.png)
+
+
