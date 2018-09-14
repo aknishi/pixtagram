@@ -45,16 +45,24 @@ class PostShow extends React.Component {
     this.props.history.push(`/users/posts/${post.id}/liked_by`);
   }
 
-  handleLike() {
+  heartAnimation(id) {
+    document.querySelector(`#${id}`).className = "like-heart-container";
+    window.requestAnimationFrame(function(time) {
+      window.requestAnimationFrame(function(time) {
+        document.querySelector(`#${id}`).className = "like-heart-container appear";
+      });
+    });
+  }
+
+  handleLike(e) {
     const { post, createLike, deleteLike, currentUserId } = this.props
     if (!post.liked) {
       const like = {liker_id: currentUserId, likeable_id: post.id, likeable_type: "Post"};
       createLike(like);
-      post.liked = !post.liked
+      this.heartAnimation(e.target.id);
     } else {
       const like = post.myLike;
       deleteLike(like);
-      post.liked = !post.liked
     }
   }
 
@@ -86,7 +94,7 @@ class PostShow extends React.Component {
       )
     } else {
       return(
-        <img src={window.heartURL} className="icon" alt="like" onClick={this.handleLike}/>
+        <img id={`like-heart-${post.id}`} src={window.heartURL} className="icon" alt="like" onClick={this.handleLike}/>
       )
     }
   }
@@ -149,8 +157,11 @@ class PostShow extends React.Component {
     const { post, user, deletePost } = this.props;
     return(
       <div className="post-detail-container">
-        <div className="post-detail-photo">
-          <img src={post.photoUrl}/>
+        <div className="post-detail-photo-container">
+          <div id={`like-heart-${post.id}`} className="like-heart-container">
+            <img id={`like-heart-${post.id}`} src={window.bigWhiteHeartURL} alt="liked!" className="like-heart"/>
+          </div>
+          <img className="post-detail-photo" src={post.photoUrl}/>
         </div>
         <div className="post-detail-info">
           <div className="post-detail-header">

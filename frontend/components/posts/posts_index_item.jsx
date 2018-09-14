@@ -28,11 +28,21 @@ class PostsIndexItem extends React.Component {
     this.props.history.push(`/posts/${post.id}/liked_by`);
   }
 
-  handleLike() {
+  heartAnimation(id) {
+    document.querySelector(`#${id}`).className = "like-heart-container";
+    window.requestAnimationFrame(function(time) {
+      window.requestAnimationFrame(function(time) {
+        document.querySelector(`#${id}`).className = "like-heart-container appear";
+      });
+    });
+  }
+
+  handleLike(e) {
     const { post, createLike, deleteLike, currentUserId } = this.props
     if (!post.liked) {
       const like = {liker_id: currentUserId, likeable_id: post.id, likeable_type: "Post"};
       createLike(like);
+      this.heartAnimation(e.target.id);
     } else {
       const like = post.myLike;
       deleteLike(like);
@@ -68,7 +78,7 @@ class PostsIndexItem extends React.Component {
       )
     } else {
       return(
-        <img src={window.heartURL} className="icon" alt="like" onClick={this.handleLike}/>
+        <img id={`like-heart-${post.id}`} src={window.heartURL} className="icon" alt="like" onClick={this.handleLike}/>
       )
     }
   }
@@ -158,12 +168,9 @@ class PostsIndexItem extends React.Component {
           { this.deleteButton() }
         </div>
         <div className="post-photo-container" onDoubleClick={this.handleLike}>
-          <CSSTransitionGroup
-            transitionName="like"
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={500}>
-              <img src={window.bigWhiteHeartURL} alt="liked!" className="like-heart"/>
-          </CSSTransitionGroup>
+          <div id={`like-heart-${post.id}`} className="like-heart-container">
+            <img id={`like-heart-${post.id}`} src={window.bigWhiteHeartURL} alt="liked!" className="like-heart"/>
+          </div>
           <img className="post-full-photo" src={post.photoUrl}/>
         </div>
         <div className="bottom-block-container">
