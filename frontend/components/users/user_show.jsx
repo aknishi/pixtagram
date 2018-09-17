@@ -39,7 +39,7 @@ class UserShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUsers();
+    setTimeout(() => { this.props.fetchUsers(), 500});
     this.props.fetchPosts();
   }
 
