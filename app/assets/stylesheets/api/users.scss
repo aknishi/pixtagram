@@ -76,11 +76,16 @@
   font-size: 14px;
   background-color: #fafafa;
   border-radius: 6px;
+  cursor: pointer;
 
   &:active {
     color: $light-grey;
     border: 1px solid $light-grey;
     border-radius: 6px;
+  }
+
+  &:hover {
+    background-color: $mid-grey;
   }
 }
 
@@ -91,12 +96,17 @@
   color: white;
   background-color: #bcbcbc;
   border-radius: 6px;
+  cursor: pointer;
 
   &:active {
     color: $light-grey;
     border: 1px solid $light-grey;
     background-color: #fafafa;
     border-radius: 6px;
+  }
+
+  &:hover {
+    background-color: $grey;
   }
 }
 
