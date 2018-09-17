@@ -19,10 +19,6 @@ class PostShow extends React.Component {
     this.profilePhoto = this.profilePhoto.bind(this);
   }
 
-  componentDidMount() {
-    this.props.fetchPost(this.props.post.id);
-  }
-
   goBackHistory() {
     this.props.history.goBack();
   }
