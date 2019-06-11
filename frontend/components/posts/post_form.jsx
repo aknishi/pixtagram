@@ -30,7 +30,7 @@ class PostForm extends React.Component {
     }
   }
 
-  redirectToProfile(){
+  redirectToProfile() {
     const { currentUserId } = this.props
     this.props.history.push(`/users/${currentUserId}`)
   }
@@ -43,7 +43,7 @@ class PostForm extends React.Component {
     formData.append('post[location]', this.state.location);
     formData.append('post[photo]', this.state.photoFile);
     formData.append('post[user_id]', currentUserId);
-    createPost(formData).then(setTimeout(() => {this.redirectToProfile()}, 2500));
+    createPost(formData).then(setTimeout(() => { this.redirectToProfile() }, 2500));
   }
 
   errors() {
@@ -60,45 +60,46 @@ class PostForm extends React.Component {
 
   preview() {
     if (this.state.photoUrl) {
-      return(
+      return (
         <div>
-          <h3 className="preview-text"> Image Preview </h3>
-          <img src={this.state.photoUrl} className="img-preview"/>
+          <h3 className="post-form__preview-text"> Image Preview </h3>
+          <img src={this.state.photoUrl} className="post-form__img-preview" />
         </div>
-    )}
+      )
+    }
   }
 
-  render(){
+  render() {
 
     return (
       <div className="form-container">
-        <form className="post-form-box" onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <ul>
             {this.errors()}
           </ul>
-          <h3 className="post-form-title">Create a post</h3>
+          <h3 className="post-form__title">Create a post</h3>
           <div className="post-form">
             <input
               type="file"
-              className="file-input"
+              className="post-form__file"
               onChange={this.handleFile}
-              />
-            { this.preview() }
+            />
+            {this.preview()}
             <textarea
               type="text"
-              className="body-box"
+              className="post-form__body"
               value={this.state.body}
               placeholder="Write a caption..."
               onChange={this.update('body')}
-              />
+            />
             <input
               type="text"
               value={this.state.location}
               placeholder="Location"
-              className="location-input"
+              className="post-form__location"
               onChange={this.update('location')}
-              />
-            <input type="submit" value="Create Post" className="button"/>
+            />
+            <input type="submit" value="Create Post" className="button" />
           </div>
         </form>
       </div>

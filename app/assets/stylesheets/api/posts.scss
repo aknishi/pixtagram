@@ -127,14 +127,10 @@
     margin-bottom: 6px;
   }
 
-  &__detail {
-
+  &__footer {
+    padding-left: 16px;
+    padding-right: 16px;
   }
-}
-
-.bottom-block-container{
-  padding-left: 16px;
-  padding-right: 16px;
 }
 
 .add-commment {
@@ -151,43 +147,41 @@
 }
 
 // Post Form
-.post-form-box {
-  width: 350px;
-}
+
 .post-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: white;
   width: 350px;
-}
 
-.post-form-title {
-  font-size: 40px;
-  font-family: 'billabongregular';
-  margin: 10px;
-  text-align: center;
-}
+  &__title {
+    font-size: 40px;
+    font-family: 'billabongregular';
+    margin: 10px;
+    text-align: center;
+  }
 
-.file-input {
-  background-color: white;
-}
+  &__file {
+    background-color: white;
+  }
 
-.img-preview {
-  width: 100%;
-}
+  &__img-preview {
+    width: 100%;
+  }
 
-.preview-text {
-  padding: 10px;
-  font-weight: 400;
-}
+  &__preview-text {
+    padding: 10px;
+    font-weight: 400;
+  }
 
-.body-box {
-  height: 100px;
-}
+  &__body {
+    height: 100px;
+  }
 
-.location-input {
-  background-color: white;
+  &__location {
+    background-color: white;
+  }
 }
 
 // Photo grid-item

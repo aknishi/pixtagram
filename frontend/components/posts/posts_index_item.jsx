@@ -172,7 +172,7 @@ class PostsIndexItem extends React.Component {
           </div>
           <img className="post__full-photo" src={post.photoUrl} />
         </div>
-        <div className="bottom-block-container">
+        <div className="post__footer">
           <div className="post__icons">
             <div>
               {this.likeButton()}
