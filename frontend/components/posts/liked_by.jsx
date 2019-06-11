@@ -27,7 +27,7 @@ class LikedBy extends React.Component {
     const { currentUserId } = this.props
     if (currentUserId != liker.id) {
       if (liker.followerIds.includes(currentUserId)) {
-        return(
+        return (
           <div>
             <button
               onClick={this.handleUnfollow.bind(this, liker)}
@@ -36,7 +36,7 @@ class LikedBy extends React.Component {
           </div>
         )
       } else {
-        return(
+        return (
           <div>
             <button
               onClick={this.handleFollow.bind(this, liker)}
@@ -50,12 +50,12 @@ class LikedBy extends React.Component {
 
   profilePhoto(liker) {
     if (liker.profilePhotoUrl !== "/api/users") {
-      return(
-        <img className="tiny-profile-pic" src={liker.profilePhotoUrl}/>
+      return (
+        <img className="tiny-profile-pic" src={liker.profilePhotoUrl} />
       )
     } else {
-      return(
-        <img className="tiny-profile-pic" src={window.defaultProfilePicURL}/>
+      return (
+        <img className="tiny-profile-pic" src={window.defaultProfilePicURL} />
       )
     }
   }
@@ -63,33 +63,33 @@ class LikedBy extends React.Component {
   render() {
     const { likers, createFollow, deleteFollow, currentUserId } = this.props;
     const likerItems = likers.map(liker => (
-        <li key={liker.id} className="liker-item">
-          <Link to={`/users/${liker.id}/`} className="likers-link">
-            { this.profilePhoto(liker) }
-            <div>
-              <h2 className="liker-username" id="bold">{liker.username}</h2>
-              <h2 className="liker-name">{liker.name}</h2>
-            </div>
-          </Link>
-          {this.followButtons(liker)}
-        </li>
-    ));
-    return(
-        <div>
-          <div className="likers-container">
-            <div className="likes-title">
-              <div className="empty-div"></div>
-              <h2>Likes</h2>
-              <img src={window.deleteIconURL}
-                className="close-icon" alt="close"
-                onClick={this.goBackHistory.bind(this)}/>
-            </div>
-            <ul className="likers-list">
-              { likerItems }
-            </ul>
+      <li key={liker.id} className="liker-item">
+        <Link to={`/users/${liker.id}/`} className="likers-link">
+          {this.profilePhoto(liker)}
+          <div>
+            <h2 className="liker-username bold">{liker.username}</h2>
+            <h2 className="liker-name">{liker.name}</h2>
           </div>
-          <div className="dark-overlay"></div>
+        </Link>
+        {this.followButtons(liker)}
+      </li>
+    ));
+    return (
+      <div>
+        <div className="likers-container">
+          <div className="likes-title">
+            <div className="empty-div"></div>
+            <h2>Likes</h2>
+            <img src={window.deleteIconURL}
+              className="close-icon" alt="close"
+              onClick={this.goBackHistory.bind(this)} />
+          </div>
+          <ul className="likers-list">
+            {likerItems}
+          </ul>
         </div>
+        <div className="dark-overlay"></div>
+      </div>
     )
   }
 }

@@ -103,7 +103,7 @@ class PostsIndexItem extends React.Component {
       const commentItems = postComments.map(comment => (
         <li key={comment.id}>
           <div className="post__body-container">
-            <h3 id="bold">{users[comment.author_id].username}</h3>
+            <h3 className="bold">{users[comment.author_id].username}</h3>
             <h3 className="post__body">{comment.body}</h3>
           </div>
         </li>))
@@ -160,7 +160,7 @@ class PostsIndexItem extends React.Component {
           <div className="post__author" onClick={this.navigateToUser}>
             {this.profilePhoto()}
             <div className="post__header-title">
-              <h2 className="post__username" id="bold">{user.username}</h2>
+              <h2 className="post__username bold">{user.username}</h2>
               <h4 className="post__location">{post.location}</h4>
             </div>
           </div>
@@ -180,18 +180,18 @@ class PostsIndexItem extends React.Component {
             </div>
             {this.bookmarkButton()}
           </div>
-          <h3 id="bold" className="total-likes" onClick={this.navigateToLikes}>{post.likerIds.length} Likes</h3>
+          <h3 className="total-likes bold" onClick={this.navigateToLikes}>{post.likerIds.length} Likes</h3>
           <div className="post__comments">
             <ul>
               <li>
                 <div className="post__body-container">
-                  <h3 id="bold">{user.username}</h3>
+                  <h3 className="bold">{user.username}</h3>
                   <h3 className="post__body">{post.body}</h3>
                 </div>
               </li>
             </ul>
             {this.commentList()}
-            <h4 id="light-grey" className="post__time">{post.time_ago} ago</h4>
+            <h4 className="post__time">{post.time_ago} ago</h4>
           </div>
           <input
             type="text"

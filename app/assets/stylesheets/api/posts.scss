@@ -45,7 +45,6 @@
 }
 
 .post {
-
   &__index-container {
     display: flex;
     width: 614px;
@@ -123,6 +122,7 @@
   }
 
   &__time {
+    color: $grey;
     margin-top: 6px;
     margin-bottom: 6px;
   }
@@ -147,7 +147,6 @@
 }
 
 // Post Form
-
 .post-form {
   display: flex;
   flex-direction: column;
@@ -251,21 +250,12 @@
   }
 }
 
-.post-photo-container {
-  display: flex;
-  justify-content: space-around;
-  margin: auto;
-  position: relative;
-  cursor: pointer;
-}
-
 .empty-grid-item {
   width: 293px;
   height: 293px;
 }
 
 // Photo Detail
-
 .post-detail {
   &__container {
     margin-top: 60px;
@@ -308,6 +298,7 @@
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid $light-grey;
+    margin-bottom: 10px;
   }
 
   &__comments{
@@ -365,14 +356,6 @@
     font-size: 16px;
     padding: 2px;
   }
-}
-
-#bold {
-  font-weight: 400;
-}
-
-#light-grey {
-  color: $grey;
 }
 
 #selected-item {
