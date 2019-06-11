@@ -15,24 +15,24 @@ class PostGridItem extends React.Component {
 
   render() {
     const { post } = this.props;
-    return(
+    return (
       <div className="grid-item" onClick={this.handleClick}>
         {/*overlay of photo for animation with number of likes and comments*/}
-        <div className="photo-layer">
-          <div className="counts">
-            <img src={window.whiteHeartURL} className="layer-icon" alt="likes"/>
+        <div className="grid-item__overlay">
+          <div className="grid-item__overlay__counts">
+            <img src={window.whiteHeartURL} className="grid-item__overlay__icon" alt="likes" />
             <span><b>{post.likerIds.length}</b></span>
           </div>
-          <div className="counts">
-            <img src={window.whiteCommentURL} className="layer-icon" alt="comments"/>
+          <div className="grid-item__overlay__counts">
+            <img src={window.whiteCommentURL} className="grid-item__overlay__icon" alt="comments" />
             <span><b>{post.commentIds.length}</b></span>
           </div>
         </div>
-        <img className="photo-grid-item" src={post.photoUrl}/>
+        <img className="grid-item__photo" src={post.photoUrl} />
       </div>
     )
   }
 }
 
 
-  export default withRouter(PostGridItem);
+export default withRouter(PostGridItem);

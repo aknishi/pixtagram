@@ -90,8 +90,8 @@ class PostGrid extends React.Component {
             </ul>
           </div>
         </div>
-        <div className="photo-grid-container">
-          <ul className="photo-grid">
+        <div className="photo-grid">
+          <ul className="photo-grid__list">
             {postGridItems}
             {this.emptyObject(userPosts)}
           </ul>
