@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import values from 'lodash/values';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 class PostsIndexItem extends React.Component {
   constructor(props) {
@@ -59,7 +57,6 @@ class PostsIndexItem extends React.Component {
       deleteBookmark(bookmark);
     }
   }
-
 
   handleComment(e) {
     const { currentUserId, createComment, post } = this.props
