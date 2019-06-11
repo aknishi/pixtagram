@@ -4,7 +4,7 @@ import values from 'lodash/values';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 class PostsIndexItem extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.navigateToUser = this.navigateToUser.bind(this);
     this.navigateToLikes = this.navigateToLikes.bind(this);
@@ -19,7 +19,7 @@ class PostsIndexItem extends React.Component {
   }
 
   navigateToUser() {
-    const { user, post } = this.props
+    const { user } = this.props
     this.props.history.push(`/users/${user.id}/`);
   }
 
@@ -30,8 +30,8 @@ class PostsIndexItem extends React.Component {
 
   heartAnimation(id) {
     document.querySelector(`#${id}`).className = "like-heart-container";
-    window.requestAnimationFrame(function(time) {
-      window.requestAnimationFrame(function(time) {
+    window.requestAnimationFrame(function (time) {
+      window.requestAnimationFrame(function (time) {
         document.querySelector(`#${id}`).className = "like-heart-container appear";
       });
     });
@@ -40,7 +40,7 @@ class PostsIndexItem extends React.Component {
   handleLike(e) {
     const { post, createLike, deleteLike, currentUserId } = this.props
     if (!post.liked) {
-      const like = {liker_id: currentUserId, likeable_id: post.id, likeable_type: "Post"};
+      const like = { liker_id: currentUserId, likeable_id: post.id, likeable_type: "Post" };
       createLike(like);
       this.heartAnimation(e.target.id);
     } else {
@@ -52,7 +52,7 @@ class PostsIndexItem extends React.Component {
   handleBookmark() {
     const { post, createBookmark, deleteBookmark, currentUserId } = this.props
     if (!post.bookmarked) {
-      const bookmark = {user_id: currentUserId, post_id: post.id};
+      const bookmark = { user_id: currentUserId, post_id: post.id };
       createBookmark(bookmark);
     } else {
       const bookmark = post.myBookmark
@@ -63,8 +63,8 @@ class PostsIndexItem extends React.Component {
 
   handleComment(e) {
     const { currentUserId, createComment, post } = this.props
-    if (e.keyCode == 13){
-      const comment = {body: e.currentTarget.value, author_id: currentUserId, post_id: post.id }
+    if (e.keyCode == 13) {
+      const comment = { body: e.currentTarget.value, author_id: currentUserId, post_id: post.id }
       createComment(comment);
       e.currentTarget.value = "";
     }
@@ -73,12 +73,12 @@ class PostsIndexItem extends React.Component {
   likeButton() {
     const { post } = this.props;
     if (post.liked) {
-      return(
-        <img src={window.likedURL} className="icon" alt="liked" onClick={this.handleLike}/>
+      return (
+        <img src={window.likedURL} className="icon" alt="liked" onClick={this.handleLike} />
       )
     } else {
-      return(
-        <img id={`like-heart-${post.id}`} src={window.heartURL} className="icon" alt="like" onClick={this.handleLike}/>
+      return (
+        <img id={`like-heart-${post.id}`} src={window.heartURL} className="icon" alt="like" onClick={this.handleLike} />
       )
     }
   }
@@ -86,30 +86,30 @@ class PostsIndexItem extends React.Component {
   bookmarkButton() {
     const { post } = this.props;
     if (post.bookmarked) {
-      return(
-        <img src={window.bookmarkedURL} className="icon" alt="bookmarked" onClick={this.handleBookmark}/>
+      return (
+        <img src={window.bookmarkedURL} className="icon" alt="bookmarked" onClick={this.handleBookmark} />
       )
     } else {
-      return(
-        <img src={window.bookmarkURL} className="icon" alt="bookmark" onClick={this.handleBookmark}/>
+      return (
+        <img src={window.bookmarkURL} className="icon" alt="bookmark" onClick={this.handleBookmark} />
       )
     }
   }
 
   commentList() {
     const { post, comments, users } = this.props
-    if ( post.commentIds.length > 0 ) {
+    if (post.commentIds.length > 0) {
       const postComments = comments.filter(comment => post.commentIds.includes(comment.id));
       const commentItems = postComments.map(comment => (
         <li key={comment.id}>
-          <div className="post-body-container">
+          <div className="post__body-container">
             <h3 id="bold">{users[comment.author_id].username}</h3>
-            <h3 className="post-body">{comment.body}</h3>
+            <h3 className="post__body">{comment.body}</h3>
           </div>
         </li>))
-      return(
+      return (
         <ul>
-          { commentItems }
+          {commentItems}
         </ul>
       )
     }
@@ -120,7 +120,6 @@ class PostsIndexItem extends React.Component {
     if (window.confirm('Are you sure you wish to delete this post?')) deletePost(post.id);
   }
 
-
   handleCommentClick() {
     const { post } = this.props;
     document.getElementById(`add-comment-${post.id}`).focus();
@@ -129,10 +128,10 @@ class PostsIndexItem extends React.Component {
   deleteButton() {
     const { currentUserId, post } = this.props
     if (currentUserId === post.user_id) {
-      return(
-          <img src={window.deleteIconURL}
-            className="icon" alt="delete"
-            onClick={this.handleDelete.bind(this)}/>
+      return (
+        <img src={window.deleteIconURL}
+          className="icon" alt="delete"
+          onClick={this.handleDelete.bind(this)} />
       )
     } else {
       return (<div></div>)
@@ -142,12 +141,12 @@ class PostsIndexItem extends React.Component {
   profilePhoto() {
     const { user } = this.props
     if (user.profilePhotoUrl !== "/api/users") {
-      return(
-        <img className="small-profile-pic" src={user.profilePhotoUrl}/>
+      return (
+        <img className="small-profile-pic" src={user.profilePhotoUrl} />
       )
     } else {
-      return(
-        <img className="small-profile-pic" src={window.defaultProfilePicURL}/>
+      return (
+        <img className="small-profile-pic" src={window.defaultProfilePicURL} />
       )
     }
   }
@@ -155,44 +154,44 @@ class PostsIndexItem extends React.Component {
   render() {
     const { post, user } = this.props;
 
-    return(
-      <div className="post-index-container">
-        <div className="post-header">
-          <div className="post-author"onClick={this.navigateToUser}>
-            { this.profilePhoto() }
-            <div className="post-header-title">
-              <h2 className="post-username" id="bold">{user.username}</h2>
-              <h4 className="post-location">{post.location}</h4>
+    return (
+      <div className="post__index-container">
+        <div className="post__header">
+          <div className="post__author" onClick={this.navigateToUser}>
+            {this.profilePhoto()}
+            <div className="post__header-title">
+              <h2 className="post__username" id="bold">{user.username}</h2>
+              <h4 className="post__location">{post.location}</h4>
             </div>
           </div>
-          { this.deleteButton() }
+          {this.deleteButton()}
         </div>
-        <div className="post-photo-container" onDoubleClick={this.handleLike}>
+        <div className="post__photo-container" onDoubleClick={this.handleLike}>
           <div id={`like-heart-${post.id}`} className="like-heart-container">
-            <img id={`like-heart-${post.id}`} src={window.bigWhiteHeartURL} alt="liked!" className="like-heart"/>
+            <img id={`like-heart-${post.id}`} src={window.bigWhiteHeartURL} alt="liked!" className="like-heart" />
           </div>
-          <img className="post-full-photo" src={post.photoUrl}/>
+          <img className="post__full-photo" src={post.photoUrl} />
         </div>
         <div className="bottom-block-container">
-          <div className="post-icons">
+          <div className="post__icons">
             <div>
               {this.likeButton()}
-              <img src={window.commentURL} className="icon" alt="comment" onClick={this.handleCommentClick}/>
+              <img src={window.commentURL} className="icon" alt="comment" onClick={this.handleCommentClick} />
             </div>
             {this.bookmarkButton()}
           </div>
           <h3 id="bold" className="total-likes" onClick={this.navigateToLikes}>{post.likerIds.length} Likes</h3>
-          <div className="post-comments">
+          <div className="post__comments">
             <ul>
               <li>
-                <div className="post-body-container">
+                <div className="post__body-container">
                   <h3 id="bold">{user.username}</h3>
-                  <h3 className="post-body">{post.body}</h3>
+                  <h3 className="post__body">{post.body}</h3>
                 </div>
               </li>
             </ul>
-            { this.commentList() }
-            <h4 id="light-grey" className="post-time">{post.time_ago} ago</h4>
+            {this.commentList()}
+            <h4 id="light-grey" className="post__time">{post.time_ago} ago</h4>
           </div>
           <input
             type="text"

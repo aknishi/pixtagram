@@ -5,7 +5,7 @@ import PostGridItem from './post_grid_item';
 import UserShowContainer from '../users/user_show_container';
 
 class PostGrid extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
   }
 
@@ -19,7 +19,7 @@ class PostGrid extends React.Component {
   emptyObject(userPosts) {
     if ((userPosts.length % 3) > 1) {
       return (
-      <li className="empty-grid-item"></li>
+        <li className="empty-grid-item"></li>
       )
     }
   }
@@ -28,11 +28,11 @@ class PostGrid extends React.Component {
     const { gridSelected } = this.props
     if (gridSelected) {
       return (
-        <img className="posts-navbar-icon" src={window.gridSelectedIconURL}/>
+        <img className="posts__navbar__icon" src={window.gridSelectedIconURL} />
       )
     } else {
-      return(
-        <img className="posts-navbar-icon" src={window.gridIconURL}/>
+      return (
+        <img className="posts__navbar__icon" src={window.gridIconURL} />
       )
     }
   }
@@ -41,11 +41,11 @@ class PostGrid extends React.Component {
     const { savedSelected } = this.props
     if (savedSelected) {
       return (
-        <img className="posts-navbar-icon" src={window.bookmarkedURL}/>
+        <img className="posts__navbar__icon" src={window.bookmarkedURL} />
       )
     } else {
-      return(
-        <img className="posts-navbar-icon" src={window.bookmarkURL}/>
+      return (
+        <img className="posts__navbar__icon" src={window.bookmarkURL} />
       )
     }
   }
@@ -56,7 +56,7 @@ class PostGrid extends React.Component {
       return (
         <li id={savedItemBorder}>
           {this.savedIcon()}
-          <Link to={`/users/${this.props.userId}/saved`} className="posts-navbar-links" id={savedCssId} >SAVED</Link>
+          <Link to={`/users/${this.props.userId}/saved`} className="posts__navbar__links" id={savedCssId} >SAVED</Link>
         </li>
       )
     }
@@ -72,7 +72,7 @@ class PostGrid extends React.Component {
       postsItemBorder,
       loading
     } = this.props;
-    {/*iterate from most current post to oldest*/}
+    {/*iterate from most current post to oldest*/ }
     const postGridItems = userPosts.slice(0).reverse().map(
       post => <li key={post.id}> <PostGridItem post={post} /></li>)
 
@@ -80,13 +80,13 @@ class PostGrid extends React.Component {
     return (
       <div>
         <div className="user-posts-container">
-          <div className="posts-navbar">
+          <div className="posts__navbar">
             <ul>
               <li id={postsItemBorder}>
                 {this.postsIcon()}
-                <Link to={`/users/${this.props.userId}`} className="posts-navbar-links" id={postsCssId} >POSTS</Link>
+                <Link to={`/users/${this.props.userId}`} className="posts__navbar__links" id={postsCssId} >POSTS</Link>
               </li>
-              { this.savedLink()}
+              {this.savedLink()}
             </ul>
           </div>
         </div>
